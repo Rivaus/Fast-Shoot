@@ -16,22 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: ca30d075aa6996a43bbecf0c13a97389
-  m_SerializeEntries:
-  - m_GUID: 7ce93bfe14becf34d8b0fecb5aa19b17
-    m_Address: Assets/UMI3D SDK/Common/Core/Runtime/Events/Connection Or Redirection
-      Failed.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e2f649d16ab77dd4f8f71c47267d795b
-    m_Address: Assets/UMI3D SDK/Common/Core/Runtime/Events/Connection Or Redirection
-      Started.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: adbb5208828dbcf4c9195f2a625ae74d
-    m_Address: Assets/UMI3D SDK/Common/Core/Runtime/Events/Connection Or Redirection
-      Succeeded.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bccc125c86736a54ea23d53a682ccc01, type: 2}
   m_SchemaSet:

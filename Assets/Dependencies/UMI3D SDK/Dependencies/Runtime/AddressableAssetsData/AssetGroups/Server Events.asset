@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: ec74268639760514cb8e5edf394d765c
-  m_SerializeEntries:
-  - m_GUID: a7c8a7386eaa9274e808f37f8abe91d5
-    m_Address: Assets/UMI3D SDK/Common/Core/Runtime/Events/Connection To The Server
-      Lost.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bccc125c86736a54ea23d53a682ccc01, type: 2}
   m_SchemaSet:

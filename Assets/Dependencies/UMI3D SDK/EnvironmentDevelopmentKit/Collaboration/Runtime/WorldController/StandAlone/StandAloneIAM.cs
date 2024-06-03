@@ -41,7 +41,7 @@ namespace umi3d.worldController
                 fields = new List<AbstractParameterDto>()
             };
 
-            form.fields.Add(
+            /*form.fields.Add(
                 new StringParameterDto()
                 {
                     id = 1,
@@ -63,7 +63,7 @@ namespace umi3d.worldController
                     name = "Select an option",
                     possibleValues = new List<string>() { "ValueA", "ValueB", "ValueC", "ValueD", "Une Pomme", "@&&&é" },
                     value = ""
-                });
+                });*/
 
 
             return await Task.FromResult(form);

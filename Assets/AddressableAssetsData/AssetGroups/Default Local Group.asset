@@ -23,6 +23,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2379bdb45ac7f6b4c8c9677b77a0fc0d
+    m_Address: Assets/FastShoot/Prefabs/Weapons/Pistoda.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ba454446fb7be34db57bee8ef437004
+    m_Address: Assets/FastShoot/Prefabs/Weapons/HotGun.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0091139c2fdc20e40919b4c617fbcad6
+    m_Address: Assets/FastShoot/Prefabs/Weapons/PizzFle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 78d5982b083592c4cbc564ff30bdaa52, type: 2}
   m_SchemaSet:

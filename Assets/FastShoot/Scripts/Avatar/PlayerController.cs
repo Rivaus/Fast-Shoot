@@ -1,5 +1,7 @@
+using com.quentintran.gun;
 using System.Collections.Generic;
 using umi3d.common.userCapture;
+using umi3d.common.userCapture.description;
 using umi3d.common.userCapture.tracking;
 using umi3d.edk;
 using umi3d.edk.binding;
@@ -11,6 +13,8 @@ namespace com.quentintran.player
 {
     public class PlayerController : MonoBehaviour
     {
+        #region Fields
+
         [SerializeField]
         UIText nameTag = null;
 
@@ -26,9 +30,19 @@ namespace com.quentintran.player
         [SerializeField]
         private Vector3 avatarPositionOffset = Vector3.zero, uiPositionOffset = Vector3.zero;
 
-        private UMI3DTrackedUser user;
+        public UMI3DTrackedUser User { get; private set; }
 
         private UserTrackingFrameDto trackingFrame;
+
+        private Weapon currentWeapon = null;
+
+        public bool IsReady { get; private set; } = false;
+
+        public string Username { get; private set; }
+
+        #endregion
+
+        #region Fields
 
         private void Awake()
         {
@@ -42,7 +56,8 @@ namespace com.quentintran.player
         {
             List<Operation> operations = new List<Operation>();
 
-            this.user = user as UMI3DTrackedUser;
+            this.User = user as UMI3DTrackedUser;
+            this.Username = username;
 
             nameTag.Text.SetValue(username);
             avatar.objectActive.SetValue(user, false);
@@ -69,12 +84,66 @@ namespace com.quentintran.player
 
         internal void UpdateTransform()
         {
-            trackingFrame = user.CurrentTrackingFrame;
+            trackingFrame = User.CurrentTrackingFrame;
 
-            if (user is null || trackingFrame is null)
+            if (User is null || trackingFrame is null)
                 return;
 
             transform.SetPositionAndRotation(trackingFrame.position.Struct(), trackingFrame.rotation.Quaternion());
+
+            if (this.currentWeapon is not null)
+            {
+                ControllerDto controller = trackingFrame.trackedBones.Find(bone => bone.boneType == this.currentWeapon.Binding.boneType);
+                BoneBinding binding = this.currentWeapon.Binding;
+                Vector3 pos = controller.position.Struct();
+                Quaternion rot = controller.rotation.Quaternion();
+
+                if (controller is not null)
+                {
+                    this.currentWeapon.transform.SetPositionAndRotation(pos + rot * binding.offsetPosition, rot * binding.offsetRotation);
+                }
+            }
         }
+
+        public void Equip(Weapon weapon, uint boneType)
+        {
+            Transaction transaction = new() { reliable = true };
+
+            if (this.currentWeapon is not null)
+            {
+                transaction.AddIfNotNull(BindingManager.Instance.RemoveBinding(this.currentWeapon.Binding));
+
+                foreach (UMI3DLoadableEntity entity in this.currentWeapon.GetComponentsInChildren<UMI3DLoadableEntity>())
+                {
+                    transaction.AddIfNotNull(entity.GetDeleteEntity());
+                }
+            }
+
+            Weapon weaponGo = GameObject.Instantiate(weapon);
+            weaponGo.transform.SetParent(this.transform);
+
+            foreach (UMI3DLoadableEntity entity in weaponGo.GetComponentsInChildren<UMI3DLoadableEntity>())
+            {
+                transaction.AddIfNotNull(entity.GetLoadEntity());
+            }
+
+            BoneBinding binding = new(weaponGo.Model.Id(), User.Id(), boneType)
+            {
+                syncPosition = true,
+                syncRotation = true,
+                offsetPosition = (User.HasHeadMountedDisplay) ? weaponGo.VRPositionOffset : weaponGo.DesktopPositionOffset,
+                offsetRotation = (User.HasHeadMountedDisplay) ? Quaternion.Euler(weaponGo.VRRotationOffset) : Quaternion.Euler(weaponGo.DesktopRotationOffset),
+                bindToController = true,
+            };
+            transaction.AddIfNotNull(BindingManager.Instance.AddBinding(binding));
+            weaponGo.Binding = binding;
+
+            transaction.Dispatch();
+
+            this.IsReady = true;
+            this.currentWeapon = weaponGo;
+        }
+
+        #endregion
     }
 }

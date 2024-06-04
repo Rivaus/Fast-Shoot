@@ -2,13 +2,18 @@ using com.quentintran.connection;
 using com.quentintran.notification;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using umi3d.edk;
 using UnityEngine;
+using static UnityEngine.Rendering.HDROutputUtils;
 
 namespace com.quentintran.player
 {
     public class PlayerManager : MonoBehaviour
     {
+        #region Fields
+
         [SerializeField]
         UserManager userManager = null;
 
@@ -21,6 +26,9 @@ namespace com.quentintran.player
         [SerializeField]
         Transform spawnPosition;
 
+        [SerializeField]
+        Transform[] spawns;
+
         [Space]
         [SerializeField]
         PlayerController playerTemplate = null;
@@ -30,6 +38,19 @@ namespace com.quentintran.player
         Dictionary<ulong, PlayerController> playerControllers = new();
         Dictionary<ulong, PlayerNotification> playerNotifications = new();
 
+        private bool partyStarted = false;
+
+        #endregion
+
+        #region Fields
+
+        public PlayerController? GetPlayer(ulong userId)
+        {
+            playerControllers.TryGetValue(userId, out PlayerController playerController);
+
+            return playerController;
+        }
+
         private void Awake()
         {
             Debug.Assert(userManager != null);
@@ -37,6 +58,7 @@ namespace com.quentintran.player
             Debug.Assert(spawnPosition != null);
             Debug.Assert(playerTemplate != null);
             Debug.Assert(playerNotificationTemplate != null);
+            Debug.Assert(spawns.Length > 0);
 
             userManagerService = userManager;
             notificationService = new NotificationService();
@@ -90,6 +112,55 @@ namespace com.quentintran.player
         {
             notificationService.NotifyUsers("Hello !", 6);
         }
+
+        [ContextMenu("Start Party")]
+        private async void StartParty()
+        {
+            bool ready = true;
+
+            foreach (PlayerController player in playerControllers.Values)
+            {
+                if (!player.IsReady)
+                {
+                    Debug.Log($"Cannot start game, {player.Username} is not ready");
+                    ready = false;
+                }
+            }
+
+            if (playerControllers.Count > spawns.Length)
+            {
+                Debug.LogError("Impossible to start game, not enough spawns");
+                return;
+            }
+
+            if (ready)
+            {
+                this.notificationService.NotifyUsers("La repas va bientôt commencer !", 1f);
+                await Task.Delay(1000);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    this.notificationService.NotifyUsers((5 - i).ToString(), 1f);
+                    await Task.Delay(1000);
+                }
+
+                Transaction transaction = new () { reliable = true };
+
+                IEnumerable<PlayerController> players = playerControllers.Values;
+
+                for (int i = 0; i < players.Count(); i++)
+                {
+                    TeleportRequest tp = new(spawns[i].position, spawns[i].rotation) { users = new HashSet<UMI3DUser>() { players.ElementAt(i).User } };
+                    transaction.AddIfNotNull(tp);
+                }
+
+                transaction.Dispatch();
+
+                partyStarted = true;
+            }
+        }
+
+        #endregion
     }
 }
 

@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1651594427911095334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5332347142053235993}
+  - component: {fileID: 1055075348601377398}
+  - component: {fileID: 4249404628724382990}
+  m_Layer: 0
+  m_Name: Pizzle-UMI3D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5332347142053235993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651594427911095334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2021998946757550212}
+  - {fileID: 6110110876956884899}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1055075348601377398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651594427911095334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6071f500297a64496afaea9a966c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 1
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+  overrideModelMaterials: 0
+  materialsOverrider: []
+  castShadow: 1
+  receiveShadow: 1
+  blendShapesValues: []
+  lockColliders: 0
+  model:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\pizzfle.prefab.bundle
+      format: unity_standalone_urp
+      extension: .bundle
+      isInBundle: 1
+      pathIfInBundle: Assets/FastShoot/Prefabs/Weapons/PizzFle.prefab
+      metrics:
+        resolution: 0
+        size: 5183.675
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  idGenerator: '{{pid}}_[{{name}}]'
+  updateSkinnedMeshRendererWhenOffscreen: 0
+  areSubobjectsTracked: 0
+  areSubobjectsAlreadyMarked: 0
+  isRightHanded: 1
+  isPartOfNavmesh: 0
+  isTraversable: 1
+--- !u!114 &4249404628724382990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651594427911095334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0c13d2443243d4db14e3df4209a222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Model>k__BackingField: {fileID: 1055075348601377398}
+  <FireRate>k__BackingField: 1.5
+  <Damage>k__BackingField: 100
+  <AimTransform>k__BackingField: {fileID: 6110110876956884899}
+  <Range>k__BackingField: 200
+  <DesktopPositionOffset>k__BackingField: {x: 0.1, y: 0.1, z: 0.4}
+  <DesktopRotationOffset>k__BackingField: {x: 0, y: -90, z: 0}
+  <VRPositionOffset>k__BackingField: {x: 0, y: 0, z: 0}
+  <VRRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+--- !u!1 &6527758035244756772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6110110876956884899}
+  m_Layer: 0
+  m_Name: Aim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6110110876956884899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527758035244756772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0849, y: 0.0652, z: -0.0083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5332347142053235993}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2615679305223514259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5332347142053235993}
+    m_Modifications:
+    - target: {fileID: 3677338082210927277, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_Name
+      value: PizzFle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21055286
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.012314305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.008176591
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+--- !u!4 &2021998946757550212 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4054179936179750935, guid: 0091139c2fdc20e40919b4c617fbcad6, type: 3}
+  m_PrefabInstance: {fileID: 2615679305223514259}
+  m_PrefabAsset: {fileID: 0}

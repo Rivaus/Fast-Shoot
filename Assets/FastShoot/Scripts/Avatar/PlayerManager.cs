@@ -1,4 +1,5 @@
 using com.quentintran.connection;
+using com.quentintran.notification;
 using System;
 using System.Collections.Generic;
 using umi3d.edk;
@@ -12,6 +13,7 @@ namespace com.quentintran.player
         UserManager userManager = null;
 
         IUserManagerService userManagerService = null;
+        INotificationService notificationService = null;
 
         [SerializeField]
         UMI3DScene playerScene = null;
@@ -22,8 +24,11 @@ namespace com.quentintran.player
         [Space]
         [SerializeField]
         PlayerController playerTemplate = null;
+        [SerializeField]
+        PlayerNotification playerNotificationTemplate = null;
 
         Dictionary<ulong, PlayerController> playerControllers = new();
+        Dictionary<ulong, PlayerNotification> playerNotifications = new();
 
         private void Awake()
         {
@@ -31,8 +36,10 @@ namespace com.quentintran.player
             Debug.Assert(playerScene != null);
             Debug.Assert(spawnPosition != null);
             Debug.Assert(playerTemplate != null);
+            Debug.Assert(playerNotificationTemplate != null);
 
             userManagerService = userManager;
+            notificationService = new NotificationService();
 
             userManagerService.OnUserJoin += OnUserJoin;
             userManagerService.OnUserLeave += OnUserLeave;
@@ -49,6 +56,8 @@ namespace com.quentintran.player
             if (playerControllers.ContainsKey(user.Id()))
                 throw new NotImplementedException();
 
+            Transaction transaction = new() { reliable = true };
+
             string username = userManagerService.GetUserName(user.Id());
 
             PlayerController controller = GameObject.Instantiate(playerTemplate);
@@ -57,12 +66,29 @@ namespace com.quentintran.player
             controller.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             playerControllers.Add(user.Id(), controller);
-            controller.Init(user, username, spawnPosition.position);
+            transaction.AddIfNotNull(controller.Init(user, username, spawnPosition.position));
+
+
+            PlayerNotification notification = GameObject.Instantiate(playerNotificationTemplate);
+            notification.gameObject.name = "PlayerNotification--" + username;
+            notification.transform.SetParent(playerScene.transform, false);
+            notification.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            playerNotifications.Add(user.Id(), notification);
+            transaction.AddIfNotNull(notification.Init(user, notificationService));
+
+            transaction.Dispatch();
         }
 
         private void OnUserLeave(UMI3DUser user)
         {
 
+        }
+
+        [ContextMenu("Fake Notification")]
+        private void SendNotificationTest()
+        {
+            notificationService.NotifyUsers("Hello !", 6);
         }
     }
 }

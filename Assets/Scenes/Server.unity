@@ -1986,6 +1986,7 @@ MonoBehaviour:
   playerScene: {fileID: 978710746}
   spawnPosition: {fileID: 2113158843}
   playerTemplate: {fileID: 7126350542938221804, guid: 8087cbeebc4fdad4db2e6470d245d863, type: 3}
+  playerNotificationTemplate: {fileID: 5000675092688619081, guid: 3ad172ccfe3a1254d93058f5c4370055, type: 3}
 --- !u!1 &2023719149
 GameObject:
   m_ObjectHideFlags: 0

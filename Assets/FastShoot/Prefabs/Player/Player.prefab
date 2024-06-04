@@ -163,8 +163,11 @@ MonoBehaviour:
   nameTag: {fileID: 7566112277205113154}
   node: {fileID: 498859988162470689}
   avatar: {fileID: 2433434283065411077}
-  avatarPositionOffset: {x: 0, y: -1, z: 0}
+  uiCanvas: {fileID: 0}
+  notificationText: {fileID: 0}
   stepAudioSource: {fileID: 1739585008707730689}
+  avatarPositionOffset: {x: 0, y: -1, z: 0}
+  uiPositionOffset: {x: 0, y: 0, z: 1}
 --- !u!114 &498859988162470689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +283,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 10
   m_PresetInfoIsWorld: 1
 --- !u!114 &883851364589048438
 MonoBehaviour:

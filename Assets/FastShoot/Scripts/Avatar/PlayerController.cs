@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using umi3d.common.userCapture;
 using umi3d.common.userCapture.tracking;
@@ -23,10 +21,10 @@ namespace com.quentintran.player
         UMI3DModel avatar = null;
 
         [SerializeField]
-        private Vector3 avatarPositionOffset = Vector3.zero;
+        UMI3DAudioPlayer stepAudioSource = null;
 
         [SerializeField]
-        UMI3DAudioPlayer stepAudioSource = null;
+        private Vector3 avatarPositionOffset = Vector3.zero, uiPositionOffset = Vector3.zero;
 
         private UMI3DTrackedUser user;
 
@@ -40,18 +38,18 @@ namespace com.quentintran.player
             Debug.Assert(stepAudioSource != null);
         }
 
-        internal void Init(UMI3DUser user, string username, Vector3 spawnPosition)
+        internal List<Operation> Init(UMI3DUser user, string username, Vector3 spawnPosition)
         {
-            this.user = user as UMI3DTrackedUser;
+            List<Operation> operations = new List<Operation>();
 
-            Transaction transaction = new() { reliable = true };
+            this.user = user as UMI3DTrackedUser;
 
             nameTag.Text.SetValue(username);
             avatar.objectActive.SetValue(user, false);
 
             foreach(UMI3DLoadableEntity entity in GetComponentsInChildren<UMI3DLoadableEntity>())
             {
-                transaction.AddIfNotNull(entity.GetLoadEntity());
+                operations.Add(entity.GetLoadEntity());
             }
 
             BoneBinding binding = new(node.Id(), user.Id(), BoneType.Hips)
@@ -61,13 +59,12 @@ namespace com.quentintran.player
                 syncRotation = true,
                 syncPosition = true
             };
-
-            transaction.AddIfNotNull(BindingManager.Instance.AddBinding(binding));
+            operations.AddRange(BindingManager.Instance.AddBinding(binding));
 
             TeleportRequest tp = new (spawnPosition, Quaternion.identity) { users = new HashSet<UMI3DUser>() { user } };
-            transaction.AddIfNotNull(tp);
+            operations.Add(tp);
 
-            transaction.Dispatch();
+            return operations;
         }
 
         internal void UpdateTransform()

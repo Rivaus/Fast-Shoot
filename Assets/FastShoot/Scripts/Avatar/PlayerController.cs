@@ -1,7 +1,6 @@
 using com.quentintran.gun;
 using System.Collections.Generic;
 using umi3d.common.userCapture;
-using umi3d.common.userCapture.description;
 using umi3d.common.userCapture.tracking;
 using umi3d.edk;
 using umi3d.edk.binding;

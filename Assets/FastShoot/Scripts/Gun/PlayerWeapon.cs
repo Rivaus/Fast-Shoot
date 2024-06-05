@@ -23,6 +23,9 @@ namespace com.quentintran.gun
         [SerializeField]
         private UMI3DEvent shootEvent = null;
 
+        [SerializeField]
+        private UMI3DAudioPlayer audioSource = null;
+
         private UMI3DTrackedUser user;
 
         private BoneBinding binding = null;

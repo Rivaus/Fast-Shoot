@@ -1,6 +1,4 @@
 using com.quentintran.player;
-using System.Collections;
-using System.Collections.Generic;
 using umi3d.edk.interaction;
 using UnityEngine;
 

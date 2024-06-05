@@ -32,7 +32,5 @@ namespace com.quentintran.gun
 
         [field: SerializeField]
         public Vector3 VRRotationOffset { get; private set; }
-
-        public BoneBinding Binding { get; set; }
     }
 }

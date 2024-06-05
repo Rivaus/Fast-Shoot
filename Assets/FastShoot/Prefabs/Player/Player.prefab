@@ -112,6 +112,165 @@ MonoBehaviour:
   isMeshCustom: 0
   customMeshCollider:
     variants: []
+--- !u!1 &4745835519193232463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3100957407254530972}
+  - component: {fileID: 5858820508200267810}
+  - component: {fileID: 1520984907413928178}
+  - component: {fileID: 1937619940509521128}
+  - component: {fileID: 7424261926195179574}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3100957407254530972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745835519193232463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5845923568832847896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5858820508200267810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745835519193232463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1b8f010a6494546a92b9e4cb66b65e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+--- !u!114 &1520984907413928178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745835519193232463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0287a315c45ffb54894379024a8825be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: {fileID: 1937619940509521128}
+  shootEvent: {fileID: 7424261926195179574}
+--- !u!114 &1937619940509521128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745835519193232463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a302a3c7ed4cc44193691fe133af4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Display:
+    name: Gun
+    description: 
+    icon2D:
+      variants: []
+    icon3D:
+      variants: []
+  Interactions:
+  - {fileID: 7424261926195179574}
+  Active: 1
+  onProjection:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  NotifyHoverPosition: 0
+  NotifySubObject: 0
+  Node: {fileID: 5858820508200267810}
+  HasPriority: 0
+  InteractionDistance: -1
+  onHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onHovered:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+  UseAnimations: 0
+  HoverEnterAnimation: {fileID: 0}
+  HoverExitAnimation: {fileID: 0}
+  hoveringBones: []
+--- !u!114 &7424261926195179574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745835519193232463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97b38d5043969c46b75af5d8abce74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UILink: {fileID: 0}
+  IsSubInteraction: 0
+  Display:
+    name: 
+    description: 
+    icon2D:
+      variants: []
+    icon3D:
+      variants: []
+  Hold: 0
+  onHold:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  TriggerAnimation: {fileID: 0}
+  ReleaseAnimation: {fileID: 0}
 --- !u!1 &7608956114204695428
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +305,7 @@ Transform:
   - {fileID: 3435384102073764892}
   - {fileID: 3943397580160895110}
   - {fileID: 6894362920698294898}
+  - {fileID: 3100957407254530972}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7126350542938221804
@@ -163,11 +323,10 @@ MonoBehaviour:
   nameTag: {fileID: 7566112277205113154}
   node: {fileID: 498859988162470689}
   avatar: {fileID: 2433434283065411077}
-  uiCanvas: {fileID: 0}
-  notificationText: {fileID: 0}
   stepAudioSource: {fileID: 1739585008707730689}
   avatarPositionOffset: {x: 0, y: -1, z: 0}
   uiPositionOffset: {x: 0, y: 0, z: 1}
+  currentWeapon: {fileID: 1520984907413928178}
 --- !u!114 &498859988162470689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +743,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ae856c80ab0cdb84b93bf3388dd8ebd7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ba6f32f1de8e7e844ac55fd97ae6a66e, type: 2}
     - target: {fileID: 919132149155446097, guid: ae856c80ab0cdb84b93bf3388dd8ebd7, type: 3}
       propertyPath: m_Name
       value: Character

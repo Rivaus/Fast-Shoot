@@ -104,7 +104,20 @@ namespace com.quentintran.player
 
         private void OnUserLeave(UMI3DUser user)
         {
+            if (playerControllers.TryGetValue(user.Id(), out PlayerController controller))
+            {
+                Transaction transaction = new() { reliable = true };
 
+                transaction.AddIfNotNull(controller.GetDelete());
+
+                transaction.Dispatch();
+
+                playerControllers.Remove(user.Id());
+            }
+            else
+            {
+                Debug.LogError("Impossible to delete player");
+            }
         }
 
         [ContextMenu("Fake Notification")]

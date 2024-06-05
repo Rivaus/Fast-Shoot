@@ -30,11 +30,14 @@ namespace com.quentintran.player
         [SerializeField]
         private Vector3 avatarPositionOffset = Vector3.zero, uiPositionOffset = Vector3.zero;
 
+        [SerializeField]
+        private PlayerWeapon currentWeapon = null;
+
         public UMI3DTrackedUser User { get; private set; }
 
-        private UserTrackingFrameDto trackingFrame;
+        private BoneBinding avatarBinding = null;
 
-        private Weapon currentWeapon = null;
+        private UserTrackingFrameDto trackingFrame;
 
         public bool IsReady { get; private set; } = false;
 
@@ -50,6 +53,7 @@ namespace com.quentintran.player
             Debug.Assert(avatar != null);
             Debug.Assert(nameTag != null);
             Debug.Assert(stepAudioSource != null);
+            Debug.Assert(currentWeapon != null);
         }
 
         internal List<Operation> Init(UMI3DUser user, string username, Vector3 spawnPosition)
@@ -67,14 +71,14 @@ namespace com.quentintran.player
                 operations.Add(entity.GetLoadEntity());
             }
 
-            BoneBinding binding = new(node.Id(), user.Id(), BoneType.Hips)
+            avatarBinding = new(node.Id(), user.Id(), BoneType.Hips)
             {
                 offsetPosition = avatarPositionOffset,
                 offsetRotation = Quaternion.identity,
                 syncRotation = true,
                 syncPosition = true
             };
-            operations.AddRange(BindingManager.Instance.AddBinding(binding));
+            operations.AddRange(BindingManager.Instance.AddBinding(avatarBinding));
 
             TeleportRequest tp = new (spawnPosition, Quaternion.identity) { users = new HashSet<UMI3DUser>() { user } };
             operations.Add(tp);
@@ -91,59 +95,32 @@ namespace com.quentintran.player
 
             transform.SetPositionAndRotation(trackingFrame.position.Struct(), trackingFrame.rotation.Quaternion());
 
-            if (this.currentWeapon is not null)
-            {
-                ControllerDto controller = trackingFrame.trackedBones.Find(bone => bone.boneType == this.currentWeapon.Binding.boneType);
-                BoneBinding binding = this.currentWeapon.Binding;
-                Vector3 pos = controller.position.Struct();
-                Quaternion rot = controller.rotation.Quaternion();
-
-                if (controller is not null)
-                {
-                    this.currentWeapon.transform.SetPositionAndRotation(pos + rot * binding.offsetPosition, rot * binding.offsetRotation);
-                }
-            }
+            this.currentWeapon.UpdateTransform();
         }
 
-        public void Equip(Weapon weapon, uint boneType)
+        public void Equip(Weapon weaponTemplate, uint boneType)
         {
-            Transaction transaction = new() { reliable = true };
-
-            if (this.currentWeapon is not null)
-            {
-                transaction.AddIfNotNull(BindingManager.Instance.RemoveBinding(this.currentWeapon.Binding));
-
-                foreach (UMI3DLoadableEntity entity in this.currentWeapon.GetComponentsInChildren<UMI3DLoadableEntity>())
-                {
-                    transaction.AddIfNotNull(entity.GetDeleteEntity());
-                }
-
-                GameObject.Destroy(this.currentWeapon.gameObject);
-            }
-
-            Weapon weaponGo = GameObject.Instantiate(weapon);
-            weaponGo.transform.SetParent(this.transform);
-
-            foreach (UMI3DLoadableEntity entity in weaponGo.GetComponentsInChildren<UMI3DLoadableEntity>())
-            {
-                transaction.AddIfNotNull(entity.GetLoadEntity());
-            }
-
-            BoneBinding binding = new(weaponGo.Model.Id(), User.Id(), boneType)
-            {
-                syncPosition = true,
-                syncRotation = true,
-                offsetPosition = (User.HasHeadMountedDisplay) ? weaponGo.VRPositionOffset : weaponGo.DesktopPositionOffset,
-                offsetRotation = (User.HasHeadMountedDisplay) ? Quaternion.Euler(weaponGo.VRRotationOffset) : Quaternion.Euler(weaponGo.DesktopRotationOffset),
-                bindToController = true,
-            };
-            transaction.AddIfNotNull(BindingManager.Instance.AddBinding(binding));
-            weaponGo.Binding = binding;
-
-            transaction.Dispatch();
+            currentWeapon.EquipWeapon(this.User, weaponTemplate, boneType);
+            currentWeapon.Enable();
 
             this.IsReady = true;
-            this.currentWeapon = weaponGo;
+        }
+
+        public List<Operation> GetDelete()
+        {
+            List<Operation> operations = new();
+
+            operations.AddRange(this.currentWeapon.GetDelete());
+            operations.AddRange(BindingManager.Instance.RemoveBinding(avatarBinding) ?? new List<Operation>());
+
+            foreach (UMI3DLoadableEntity entity in GetComponentsInChildren<UMI3DLoadableEntity>())
+            {
+                operations.Add(entity.GetDeleteEntity());
+            }
+
+            GameObject.Destroy(this.gameObject);
+
+            return operations;
         }
 
         #endregion

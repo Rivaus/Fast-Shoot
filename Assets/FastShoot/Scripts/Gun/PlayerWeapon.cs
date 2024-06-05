@@ -9,6 +9,7 @@ using umi3d.edk.userCapture.tracking;
 using System.Collections.Generic;
 using static umi3d.edk.interaction.AbstractInteraction;
 using System;
+using UnityEngine.UIElements;
 
 namespace com.quentintran.gun
 {
@@ -33,7 +34,6 @@ namespace com.quentintran.gun
 
         public void EquipWeapon(UMI3DTrackedUser user, Weapon weaponTemplate, uint boneType)
         {
-            Debug.Log("EQUIP " + user.HasHeadMountedDisplay + " " + boneType);
             this.user = user;
 
             Transaction transaction = new() { reliable = true };
@@ -66,6 +66,8 @@ namespace com.quentintran.gun
                 offsetRotation = (user.HasHeadMountedDisplay) ? Quaternion.Euler(weaponGo.VRRotationOffset) : Quaternion.Euler(weaponGo.DesktopRotationOffset),
                 bindToController = true,
             };
+
+            Debug.Log("BINDING " + binding.bindToController);
 
             transaction.AddIfNotNull(BindingManager.Instance.AddBinding(binding));
             transaction.Dispatch();

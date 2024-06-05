@@ -117,6 +117,8 @@ namespace com.quentintran.player
                 {
                     transaction.AddIfNotNull(entity.GetDeleteEntity());
                 }
+
+                GameObject.Destroy(this.currentWeapon.gameObject);
             }
 
             Weapon weaponGo = GameObject.Instantiate(weapon);

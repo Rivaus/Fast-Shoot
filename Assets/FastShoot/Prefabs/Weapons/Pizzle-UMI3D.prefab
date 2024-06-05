@@ -76,7 +76,7 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\pizzfle.prefab.bundle
+      path: private\default\pizzfle.prefab.bundle
       format: unity_standalone_urp
       extension: .bundle
       isInBundle: 1
@@ -84,6 +84,18 @@ MonoBehaviour:
       metrics:
         resolution: 0
         size: 5183.675
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+    - isLocalFile: 1
+      domain: 
+      path: private\android\pizzfle.prefab.bundle
+      format: unity_android_urp
+      extension: .bundle
+      isInBundle: 1
+      pathIfInBundle: Assets/FastShoot/Prefabs/Weapons/PizzFle.prefab
+      metrics:
+        resolution: 0
+        size: 5674.042
       isInLibrary: 0
       libraryKey: {fileID: 0}
   idGenerator: '{{pid}}_[{{name}}]'
@@ -112,8 +124,8 @@ MonoBehaviour:
   <Range>k__BackingField: 200
   <DesktopPositionOffset>k__BackingField: {x: 0.1, y: 0.1, z: 0.4}
   <DesktopRotationOffset>k__BackingField: {x: 0, y: -90, z: 0}
-  <VRPositionOffset>k__BackingField: {x: 0, y: 0, z: 0}
-  <VRRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+  <VRPositionOffset>k__BackingField: {x: 0, y: -0.015, z: -0.027}
+  <VRRotationOffset>k__BackingField: {x: 90, y: 0, z: 0}
 --- !u!1 &6527758035244756772
 GameObject:
   m_ObjectHideFlags: 0

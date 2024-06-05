@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1201,14 +1201,26 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\level_01.bundle
+      path: private\default\level_01.bundle
       format: unity_standalone_urp
       extension: .bundle
       isInBundle: 1
       pathIfInBundle: Assets/Scenes/Level_01.unity
       metrics:
         resolution: 0
-        size: 16153.359
+        size: 16200.358
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+    - isLocalFile: 1
+      domain: 
+      path: private\android\level_01.bundle
+      format: unity_android_urp
+      extension: .bundle
+      isInBundle: 1
+      pathIfInBundle: Assets/Scenes/Level_01.unity
+      metrics:
+        resolution: 0
+        size: 13063.287
       isInLibrary: 0
       libraryKey: {fileID: 0}
   idGenerator: '{{pid}}_[{{name}}]'

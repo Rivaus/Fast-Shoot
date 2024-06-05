@@ -107,7 +107,7 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\hotgun.prefab.bundle
+      path: private\default\hotgun.prefab.bundle
       format: unity_standalone_urp
       extension: .bundle
       isInBundle: 1
@@ -115,6 +115,18 @@ MonoBehaviour:
       metrics:
         resolution: 0
         size: 5373.921
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+    - isLocalFile: 1
+      domain: 
+      path: private\android\hotgun.prefab.bundle
+      format: unity_android_urp
+      extension: .bundle
+      isInBundle: 1
+      pathIfInBundle: Assets/FastShoot/Prefabs/Weapons/HotGun.prefab
+      metrics:
+        resolution: 0
+        size: 5950.802
       isInLibrary: 0
       libraryKey: {fileID: 0}
   idGenerator: '{{pid}}_[{{name}}]'
@@ -143,8 +155,8 @@ MonoBehaviour:
   <Range>k__BackingField: 30
   <DesktopPositionOffset>k__BackingField: {x: 0.15, y: 0.05, z: 0.4}
   <DesktopRotationOffset>k__BackingField: {x: 0, y: -90, z: 0}
-  <VRPositionOffset>k__BackingField: {x: 0, y: 0, z: 0}
-  <VRRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+  <VRPositionOffset>k__BackingField: {x: 0, y: -0.015, z: -0.035}
+  <VRRotationOffset>k__BackingField: {x: 90, y: 0, z: 0}
 --- !u!1001 &8046829239890224603
 PrefabInstance:
   m_ObjectHideFlags: 0

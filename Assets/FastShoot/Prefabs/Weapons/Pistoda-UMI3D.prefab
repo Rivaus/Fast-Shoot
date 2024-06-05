@@ -107,7 +107,7 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\pistoda.prefab.bundle
+      path: private\default\pistoda.prefab.bundle
       format: unity_standalone_urp
       extension: .bundle
       isInBundle: 1
@@ -115,6 +115,18 @@ MonoBehaviour:
       metrics:
         resolution: 0
         size: 3276.378
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+    - isLocalFile: 1
+      domain: 
+      path: private\android\pistoda.prefab.bundle
+      format: unity_android_urp
+      extension: .bundle
+      isInBundle: 1
+      pathIfInBundle: Assets/FastShoot/Prefabs/Weapons/Pistoda.prefab
+      metrics:
+        resolution: 0
+        size: 3844.203
       isInLibrary: 0
       libraryKey: {fileID: 0}
   idGenerator: '{{pid}}_[{{name}}]'
@@ -143,8 +155,8 @@ MonoBehaviour:
   <Range>k__BackingField: 50
   <DesktopPositionOffset>k__BackingField: {x: 0.15, y: 0.1, z: 0.4}
   <DesktopRotationOffset>k__BackingField: {x: 0, y: -90, z: 0}
-  <VRPositionOffset>k__BackingField: {x: 0, y: 0, z: 0}
-  <VRRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+  <VRPositionOffset>k__BackingField: {x: 0, y: -0.015, z: -0.02}
+  <VRRotationOffset>k__BackingField: {x: 90, y: 0, z: 0}
 --- !u!1001 &6992231848332901398
 PrefabInstance:
   m_ObjectHideFlags: 0

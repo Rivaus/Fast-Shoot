@@ -33,6 +33,7 @@ namespace com.quentintran.gun
 
         public void EquipWeapon(UMI3DTrackedUser user, Weapon weaponTemplate, uint boneType)
         {
+            Debug.Log("EQUIP " + user.HasHeadMountedDisplay + " " + boneType);
             this.user = user;
 
             Transaction transaction = new() { reliable = true };

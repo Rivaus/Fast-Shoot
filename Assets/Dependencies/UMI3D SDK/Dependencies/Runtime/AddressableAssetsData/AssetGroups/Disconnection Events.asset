@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 5a01a2b54bdbc134991aaa81175217c1
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 4e160710d528f9647a78dac9f3d767d1
+    m_Address: Assets/UMI3D SDK/Common/Core/Runtime/Events/Disconnection From The
+      User Started.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bccc125c86736a54ea23d53a682ccc01, type: 2}
   m_SchemaSet:

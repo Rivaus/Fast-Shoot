@@ -34,6 +34,10 @@ namespace com.quentintran.gun
 
         private void Start()
         {
+            Debug.Assert(interactable != null);
+            Debug.Assert(shootEvent != null);
+            Debug.Assert(audioSource != null);
+
             this.shootEvent.onTrigger.AddListener(Shoot);
         }
 
@@ -72,9 +76,8 @@ namespace com.quentintran.gun
                 bindToController = true,
             };
 
-            Debug.Log("BINDING " + binding.bindToController);
-
             transaction.AddIfNotNull(BindingManager.Instance.AddBinding(binding));
+            transaction.AddIfNotNull(this.audioSource.ObjectAudioResource.SetValue(weaponGo.ShootSound));
             transaction.Dispatch();
 
             this.weapon = weaponGo;
@@ -140,6 +143,8 @@ namespace com.quentintran.gun
                 return;
             }
 
+            lastTimeShoot = Time.time;
+
             Ray ray;
 
             if (user.HasHeadMountedDisplay)
@@ -160,6 +165,11 @@ namespace com.quentintran.gun
                     DecalManager.Instance.DisplayBulletDecal(hit.point, hit.normal);
                 }
             }
+
+            Transaction transaction = new() { reliable = true };
+            transaction.AddIfNotNull(this.audioSource.objectPlaying.SetValue(false));
+            transaction.AddIfNotNull(this.audioSource.objectPlaying.SetValue(true));
+            transaction.Dispatch();
         }
 
         internal IEnumerable<Operation> GetDelete()

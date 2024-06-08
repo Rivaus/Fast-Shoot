@@ -157,6 +157,20 @@ MonoBehaviour:
   <DesktopRotationOffset>k__BackingField: {x: 0, y: -90, z: 0}
   <VRPositionOffset>k__BackingField: {x: 0, y: -0.015, z: -0.02}
   <VRRotationOffset>k__BackingField: {x: 90, y: 0, z: 0}
+  <ShootSound>k__BackingField:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\sound\weapons\gun-shoot-sound.wav
+      format: gltf
+      extension: .wav
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 514.82
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
 --- !u!1001 &6992231848332901398
 PrefabInstance:
   m_ObjectHideFlags: 0

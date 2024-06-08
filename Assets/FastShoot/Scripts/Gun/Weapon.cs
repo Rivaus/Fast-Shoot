@@ -1,5 +1,4 @@
 using umi3d.edk;
-using umi3d.edk.userCapture.binding;
 using UnityEngine;
 
 namespace com.quentintran.gun
@@ -32,5 +31,8 @@ namespace com.quentintran.gun
 
         [field: SerializeField]
         public Vector3 VRRotationOffset { get; private set; }
+
+        [field: SerializeField]
+        public UMI3DResource ShootSound { get; private set; }
     }
 }

@@ -126,6 +126,20 @@ MonoBehaviour:
   <DesktopRotationOffset>k__BackingField: {x: 0, y: -90, z: 0}
   <VRPositionOffset>k__BackingField: {x: 0, y: -0.015, z: -0.027}
   <VRRotationOffset>k__BackingField: {x: 90, y: 0, z: 0}
+  <ShootSound>k__BackingField:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\sound\weapons\sniper-shoot-sound.wav
+      format: gltf
+      extension: .wav
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 690.146
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
 --- !u!1 &6527758035244756772
 GameObject:
   m_ObjectHideFlags: 0

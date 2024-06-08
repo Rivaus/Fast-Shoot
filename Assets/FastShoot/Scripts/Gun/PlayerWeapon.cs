@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using static umi3d.edk.interaction.AbstractInteraction;
 using System;
 using UnityEngine.UIElements;
+using com.quentintran.player;
+using com.quentintran.server.shoot;
 
 namespace com.quentintran.gun
 {
@@ -125,19 +127,38 @@ namespace com.quentintran.gun
 
         }
 
+        float lastTimeShoot = 0f;
+
         private void Shoot(InteractionEventContent content)
         {
             if (this.weapon is null)
                 return;
 
-            if (user.HasHeadMountedDisplay)
+            if(Time.time < lastTimeShoot + this.weapon.FireRate)
             {
-                Debug.Log("TODO");
+                Debug.Log("Add feedback");
+                return;
             }
+
+            Ray ray;
+
+            if (user.HasHeadMountedDisplay)
+                ray = new Ray(this.weapon.AimTransform.position, this.weapon.AimTransform.forward);
             else
+                ray = new Ray(controller.position.Struct() + controller.rotation.Quaternion() * Vector3.up * 0.2f, controller.rotation.Quaternion() * Vector3.forward);
+
+            Debug.DrawRay(ray.origin, ray.direction * this.weapon.Range, Color.red, .5f);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, this.weapon.Range))
             {
-                Debug.Log("SHOOOT");
-                Debug.DrawRay(controller.position.Struct(), controller.rotation.Quaternion() * Vector3.forward * this.weapon.Range, Color.red, .5f);
+                if (hit.transform.TryGetComponent(out PlayerController controller))
+                {
+                    Debug.Log("Player hit " + controller.Username); 
+                }else
+                {
+                    Debug.Log("Wall hit ");
+                    DecalManager.Instance.DisplayBulletDecal(hit.point, hit.normal);
+                }
             }
         }
 

@@ -29,13 +29,16 @@ namespace com.quentintran.server.shoot
         {
             base.Awake();
 
-            bullet = new PoolObject(bulletTemplate, decalDisplayTime, decalScene.transform, poolNumber, this);
-            blood = new PoolObject(bloodTemplate, decalDisplayTime, decalScene.transform, poolNumber, this);
+            if (bulletTemplate is not null)
+                bullet = new PoolObject(bulletTemplate, decalDisplayTime, decalScene.transform, poolNumber, this);
+
+            if (bloodTemplate is not null)
+                blood = new PoolObject(bloodTemplate, decalDisplayTime, decalScene.transform, poolNumber, this);
         }
 
         internal void DisplayBulletDecal(Vector3 position, Vector3 normal)
         {
-            bullet.DisplayObject(position + normal * .1f, position);
+            bullet.DisplayObject(position + normal * .005f, position);
         }
 
         internal void DisplayBloodDecal(Vector3 position, Vector3 normal)

@@ -41,6 +41,8 @@ namespace com.quentintran.player
             this.text.Text.SetValue("");
 
             StartCoroutine(DisplayNotifications());
+
+            UMI3DServer.Instance.OnUserLeave.AddListener(OnUserLeave);
         }
 
         public List<Operation> Init(UMI3DUser user, INotificationService notificationService)
@@ -79,8 +81,6 @@ namespace com.quentintran.player
 
         private IEnumerator DisplayNotifications()
         {
-            WaitForSeconds wait = new(1 / 5f);
-
             while (true)
             {
                 yield return null;
@@ -102,8 +102,26 @@ namespace com.quentintran.player
             }
         }
 
+        private void OnUserLeave(UMI3DUser u)
+        {
+            if (u == this.user)
+            {
+                Transaction transaction = new() { reliable = true };
+
+                foreach (UMI3DLoadableEntity entity in GetComponentsInChildren<UMI3DLoadableEntity>())
+                {
+                    transaction.AddIfNotNull(entity.GetDeleteEntity());
+                }
+
+                transaction.Dispatch();
+
+                GameObject.Destroy(this.gameObject);
+            }
+        }
+
         private void OnDestroy()
         {
+            UMI3DServer.Instance.OnUserLeave.RemoveListener(OnUserLeave);
             this.notificationService.OnMessageEmitted += MessageEmitted;
         }
 

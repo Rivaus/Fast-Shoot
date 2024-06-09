@@ -375,8 +375,8 @@ MonoBehaviour:
   avatar: {fileID: 2433434283065411077}
   stepAudioSource: {fileID: 1739585008707730689}
   avatarPositionOffset: {x: 0, y: -1, z: 0}
-  uiPositionOffset: {x: 0, y: 0, z: 1}
-  currentWeapon: {fileID: 1520984907413928178}
+  playerNotification: {fileID: 0}
+  weaponController: {fileID: 1520984907413928178}
 --- !u!114 &498859988162470689
 MonoBehaviour:
   m_ObjectHideFlags: 0

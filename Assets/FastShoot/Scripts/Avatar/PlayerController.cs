@@ -27,10 +27,10 @@ namespace com.quentintran.player
         UMI3DAudioPlayer stepAudioSource = null;
 
         [SerializeField]
-        private Vector3 avatarPositionOffset = Vector3.zero, uiPositionOffset = Vector3.zero;
+        private Vector3 avatarPositionOffset = Vector3.zero;
 
         [SerializeField]
-        private PlayerWeapon currentWeapon = null;
+        private PlayerWeapon weaponController = null;
 
         public UMI3DTrackedUser User { get; private set; }
 
@@ -52,7 +52,7 @@ namespace com.quentintran.player
             Debug.Assert(avatar != null);
             Debug.Assert(nameTag != null);
             Debug.Assert(stepAudioSource != null);
-            Debug.Assert(currentWeapon != null);
+            Debug.Assert(weaponController != null);
         }
 
         internal List<Operation> Init(UMI3DUser user, string username, Vector3 spawnPosition)
@@ -94,13 +94,13 @@ namespace com.quentintran.player
 
             transform.SetPositionAndRotation(trackingFrame.position.Struct(), trackingFrame.rotation.Quaternion());
 
-            this.currentWeapon.UpdateTransform();
+            this.weaponController.UpdateTransform();
         }
 
         public void Equip(Weapon weaponTemplate, uint boneType)
         {
-            currentWeapon.EquipWeapon(this.User, weaponTemplate, boneType);
-            currentWeapon.Enable();
+            weaponController.EquipWeapon(this.User, weaponTemplate, boneType);
+            weaponController.Enable();
 
             this.IsReady = true;
         }
@@ -109,7 +109,7 @@ namespace com.quentintran.player
         {
             List<Operation> operations = new();
 
-            operations.AddRange(this.currentWeapon.GetDelete());
+            operations.AddRange(this.weaponController.GetDelete());
             operations.AddRange(BindingManager.Instance.RemoveBinding(avatarBinding) ?? new List<Operation>());
 
             foreach (UMI3DLoadableEntity entity in GetComponentsInChildren<UMI3DLoadableEntity>())

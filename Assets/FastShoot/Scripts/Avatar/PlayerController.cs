@@ -1,5 +1,6 @@
 using com.quentintran.gun;
 using System.Collections.Generic;
+using System.Transactions;
 using umi3d.common.userCapture;
 using umi3d.common.userCapture.tracking;
 using umi3d.edk;
@@ -7,6 +8,7 @@ using umi3d.edk.binding;
 using umi3d.edk.userCapture.binding;
 using umi3d.edk.userCapture.tracking;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace com.quentintran.player
 {
@@ -42,6 +44,25 @@ namespace com.quentintran.player
 
         public string Username { get; private set; }
 
+        private bool isWalking = false;
+
+        public bool IsWalking
+        {
+            get => this.isWalking;
+
+            set
+            {
+                if (this.isWalking != value)
+                {
+                    Transaction transaction = new() { reliable = value };
+                    transaction.AddIfNotNull(this.stepAudioSource.objectPlaying.SetValue(value));
+                    transaction.Dispatch();
+
+                    this.isWalking = value;
+                }
+            }
+        }
+
         #endregion
 
         #region Fields
@@ -64,8 +85,9 @@ namespace com.quentintran.player
 
             nameTag.Text.SetValue(username);
             avatar.objectActive.SetValue(user, false);
+            stepAudioSource.ObjectVolume.SetValue(user, .5f);
 
-            foreach(UMI3DLoadableEntity entity in GetComponentsInChildren<UMI3DLoadableEntity>())
+            foreach (UMI3DLoadableEntity entity in GetComponentsInChildren<UMI3DLoadableEntity>())
             {
                 operations.Add(entity.GetLoadEntity());
             }
@@ -92,6 +114,8 @@ namespace com.quentintran.player
             if (User is null || trackingFrame is null)
                 return;
 
+            this.IsWalking = trackingFrame.grounded && trackingFrame.speed.Struct().magnitude > 0.01f;
+
             transform.SetPositionAndRotation(trackingFrame.position.Struct(), trackingFrame.rotation.Quaternion());
 
             this.weaponController.UpdateTransform();
@@ -100,7 +124,6 @@ namespace com.quentintran.player
         public void Equip(Weapon weaponTemplate, uint boneType)
         {
             weaponController.EquipWeapon(this.User, weaponTemplate, boneType);
-            weaponController.Enable();
 
             this.IsReady = true;
         }
@@ -120,6 +143,16 @@ namespace com.quentintran.player
             GameObject.Destroy(this.gameObject);
 
             return operations;
+        }
+
+        public void EnableForParty()
+        {
+            this.weaponController.Enable();
+        }
+
+        public void Disable()
+        {
+            this.weaponController.Disable();
         }
 
         #endregion

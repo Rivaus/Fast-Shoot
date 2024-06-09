@@ -160,10 +160,13 @@ namespace com.quentintran.player
                 Transaction transaction = new () { reliable = true };
 
                 IEnumerable<PlayerController> players = playerControllers.Values;
+                PlayerController player;
 
                 for (int i = 0; i < players.Count(); i++)
                 {
-                    TeleportRequest tp = new(spawns[i].position, spawns[i].rotation) { users = new HashSet<UMI3DUser>() { players.ElementAt(i).User } };
+                    player = players.ElementAt(i);
+                    player.EnableForParty();
+                    TeleportRequest tp = new(spawns[i].position, spawns[i].rotation) { users = new HashSet<UMI3DUser>() { player.User } };
                     transaction.AddIfNotNull(tp);
                 }
 

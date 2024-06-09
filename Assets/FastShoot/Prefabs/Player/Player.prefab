@@ -51,12 +51,24 @@ MonoBehaviour:
   pauseFrame: 0
   node: {fileID: 8544910470697711950}
   audioResources:
-    variants: []
-  volume: 1
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\sound\running\328458__alexmurphy53__running-on-a-concrete-floor.wav
+      format: gltf
+      extension: .wav
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 1355.634
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  volume: 0.7
   pitch: 1
   spatialBlend: 1
   volumeAttenuationMode: 1
-  maxDistance: 15
+  maxDistance: 30
   volumeCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -375,7 +387,6 @@ MonoBehaviour:
   avatar: {fileID: 2433434283065411077}
   stepAudioSource: {fileID: 1739585008707730689}
   avatarPositionOffset: {x: 0, y: -1, z: 0}
-  playerNotification: {fileID: 0}
   weaponController: {fileID: 1520984907413928178}
 --- !u!114 &498859988162470689
 MonoBehaviour:

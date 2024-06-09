@@ -156,9 +156,10 @@ namespace com.quentintran.gun
 
             if (Physics.Raycast(ray, out RaycastHit hit, this.weapon.Range))
             {
-                if (hit.transform.TryGetComponent(out PlayerController controller))
+                if (hit.transform.TryGetComponent(out PlayerController otherPlayer))
                 {
-                    Debug.Log("Player hit " + controller.Username); 
+                    otherPlayer.Hit(user, this.weapon.Damage);
+                    Debug.Log("Player hit " + otherPlayer.Username); 
                 }else
                 {
                     Debug.Log("Wall hit ");

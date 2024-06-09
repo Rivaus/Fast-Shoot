@@ -1,6 +1,7 @@
+using com.quentintran.connection;
 using com.quentintran.gun;
+using System.Collections;
 using System.Collections.Generic;
-using System.Transactions;
 using umi3d.common.userCapture;
 using umi3d.common.userCapture.tracking;
 using umi3d.edk;
@@ -8,7 +9,6 @@ using umi3d.edk.binding;
 using umi3d.edk.userCapture.binding;
 using umi3d.edk.userCapture.tracking;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace com.quentintran.player
 {
@@ -33,6 +33,14 @@ namespace com.quentintran.player
 
         [SerializeField]
         private PlayerWeapon weaponController = null;
+
+        [Space]
+        [Header("Health")]
+        [SerializeField]
+        private UMI3DNode[] healthPoints = null;
+
+        [SerializeField]
+        private UMI3DNode heathUIContainer = null;
 
         public UMI3DTrackedUser User { get; private set; }
 
@@ -63,6 +71,29 @@ namespace com.quentintran.player
             }
         }
 
+        private const float MAX_HEALTH = 100;
+
+        private float health;
+
+        private float Health
+        {
+            get => health;
+            set
+            {
+                health = Mathf.Clamp(value, 0, MAX_HEALTH);
+
+                Transaction transaction = new() { reliable = true };
+
+                for (int i = 0; i < healthPoints.Length; i++)
+                {
+                    float threshold = (i + 1) * (MAX_HEALTH / healthPoints.Length);
+                    transaction.AddIfNotNull(healthPoints[i].objectActive.SetValue(threshold <= health));
+                }
+
+                transaction.Dispatch();
+            }
+        }
+
         #endregion
 
         #region Fields
@@ -74,6 +105,7 @@ namespace com.quentintran.player
             Debug.Assert(nameTag != null);
             Debug.Assert(stepAudioSource != null);
             Debug.Assert(weaponController != null);
+            Debug.Assert(heathUIContainer != null);
         }
 
         internal List<Operation> Init(UMI3DUser user, string username, Vector3 spawnPosition)
@@ -148,11 +180,58 @@ namespace com.quentintran.player
         public void EnableForParty()
         {
             this.weaponController.Enable();
+            this.Health = MAX_HEALTH;
         }
 
         public void Disable()
         {
             this.weaponController.Disable();
+        }
+
+        public void Hit(UMI3DUser shooter, float damage)
+        {
+            this.Health -= damage;
+
+            Debug.Log("HEALTH " + Health);
+
+            if (this.Health == 0)
+            {
+                string shooterName = UserManager.Instance.GetUserName(shooter.Id());
+
+                PlayerManager.NotificationService.NotifyUser($"Retour en cuisine, { shooterName } te prive de repas.", this.User.Id(), 4f);
+                PlayerManager.NotificationService.NotifyUser($"Tu viens de priver { this.Username } de dessert !", shooter.Id(), 4f);
+            }
+            else
+            {
+                DisplayHealthPointsForUser(shooter);
+            }
+        }
+
+        Dictionary<UMI3DUser, Coroutine> coroutines = new();
+
+        private void DisplayHealthPointsForUser(UMI3DUser shooter)
+        {
+            if (coroutines.TryGetValue(shooter, out Coroutine c))
+            {
+                StopCoroutine(c);
+            }
+
+            Coroutine display = StartCoroutine(DisplayHealthPointsForUserCoroutine(shooter));
+
+            coroutines[shooter] = display;
+        }
+
+        private IEnumerator DisplayHealthPointsForUserCoroutine(UMI3DUser u)
+        {
+            Transaction transaction = new() { reliable = true };
+            transaction.AddIfNotNull(heathUIContainer.objectActive.SetValue(u, true));
+            transaction.Dispatch();
+
+            yield return new WaitForSeconds(4f);
+
+            transaction = new() { reliable = true };
+            transaction.AddIfNotNull(heathUIContainer.objectActive.SetValue(u, false));
+            transaction.Dispatch();
         }
 
         #endregion

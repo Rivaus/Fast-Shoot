@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Model>k__BackingField: {fileID: 494793081266427725}
   <FireRate>k__BackingField: 0.5
-  <Damage>k__BackingField: 35
+  <Damage>k__BackingField: 25
   <AimTransform>k__BackingField: {fileID: 673845813907609510}
   <Range>k__BackingField: 50
   <DesktopPositionOffset>k__BackingField: {x: 0.15, y: 0.1, z: 0.4}

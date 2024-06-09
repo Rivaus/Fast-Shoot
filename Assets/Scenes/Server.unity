@@ -3224,7 +3224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a001158263df49e41bca38dc87a278c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  parent: {fileID: 978710745}
   _Spacialized: 1
   _AttenuationMaxDistance: 15
   _AttenuationMode: 0

@@ -90,13 +90,13 @@ namespace com.quentintran.player
                     (string message, float time) = notifications.Dequeue();
 
                     Transaction transaction = new() { reliable = true };
-                    transaction.AddIfNotNull(text.Text.SetValue(message));
+                    transaction.AddIfNotNull(text.Text.SetValue(user, message));
                     transaction.Dispatch();
 
                     yield return new WaitForSeconds(time);
 
                     transaction = new() { reliable = true };
-                    transaction.AddIfNotNull(text.Text.SetValue(string.Empty));
+                    transaction.AddIfNotNull(text.Text.SetValue(user, string.Empty));
                     transaction.Dispatch();
                 }
             }

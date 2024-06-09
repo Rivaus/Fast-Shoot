@@ -6,13 +6,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using umi3d.edk;
 using UnityEngine;
-using static UnityEngine.Rendering.HDROutputUtils;
 
 namespace com.quentintran.player
 {
     public class PlayerManager : MonoBehaviour
     {
         #region Fields
+
+        private static PlayerManager instance;
+
+        public static INotificationService NotificationService => instance.notificationService;
 
         [SerializeField]
         UserManager userManager = null;
@@ -65,6 +68,8 @@ namespace com.quentintran.player
 
             userManagerService.OnUserJoin += OnUserJoin;
             userManagerService.OnUserLeave += OnUserLeave;
+
+            instance = this;
         }
 
         private void Update()

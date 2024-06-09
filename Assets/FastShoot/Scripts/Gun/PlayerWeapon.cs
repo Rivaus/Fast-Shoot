@@ -127,7 +127,9 @@ namespace com.quentintran.gun
 
         public void Disable()
         {
-
+            Transaction transaction = new() { reliable = true };
+            transaction.AddIfNotNull(this.interactable.GetReleaseTool(new HashSet<UMI3DUser> { this.user }));
+            transaction.Dispatch();
         }
 
         float lastTimeShoot = 0f;

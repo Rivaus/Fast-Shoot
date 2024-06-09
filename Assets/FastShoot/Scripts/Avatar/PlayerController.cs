@@ -14,6 +14,8 @@ namespace com.quentintran.player
 {
     public class PlayerController : MonoBehaviour
     {
+        public System.Action<PlayerController> OnPlayerDie;
+
         #region Fields
 
         [SerializeField]
@@ -108,7 +110,7 @@ namespace com.quentintran.player
             Debug.Assert(heathUIContainer != null);
         }
 
-        internal List<Operation> Init(UMI3DUser user, string username, Vector3 spawnPosition)
+        internal List<Operation> Init(UMI3DUser user, string username)
         {
             List<Operation> operations = new List<Operation>();
 
@@ -132,9 +134,6 @@ namespace com.quentintran.player
                 syncPosition = true
             };
             operations.AddRange(BindingManager.Instance.AddBinding(avatarBinding));
-
-            TeleportRequest tp = new (spawnPosition, Quaternion.identity) { users = new HashSet<UMI3DUser>() { user } };
-            operations.Add(tp);
 
             return operations;
         }
@@ -200,6 +199,8 @@ namespace com.quentintran.player
 
                 PlayerManager.NotificationService.NotifyUser($"Retour en cuisine, { shooterName } te prive de repas.", this.User.Id(), 4f);
                 PlayerManager.NotificationService.NotifyUser($"Tu viens de priver { this.Username } de dessert !", shooter.Id(), 4f);
+
+                this.OnPlayerDie?.Invoke(this);
             }
             else
             {

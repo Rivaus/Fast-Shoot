@@ -72,6 +72,12 @@ namespace com.quentintran.player
             instance = this;
         }
 
+        private void Start()
+        {
+            UMI3DEnvironment.objectStartPosition.SetValue(spawnPosition.position);
+            UMI3DEnvironment.objectStartOrientation.SetValue(spawnPosition.rotation);
+        }
+
         private void Update()
         {
             foreach (PlayerController controller in playerControllers.Values)
@@ -91,10 +97,10 @@ namespace com.quentintran.player
             controller.gameObject.name = "Player--" + username;
             controller.transform.SetParent(playerScene.transform, false);
             controller.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            controller.OnPlayerDie += OnPlayerDie;
 
             playerControllers.Add(user.Id(), controller);
-            transaction.AddIfNotNull(controller.Init(user, username, spawnPosition.position));
-
+            transaction.AddIfNotNull(controller.Init(user, username));
 
             PlayerNotification notification = GameObject.Instantiate(playerNotificationTemplate);
             notification.gameObject.name = "PlayerNotification--" + username;
@@ -104,6 +110,15 @@ namespace com.quentintran.player
             playerNotifications.Add(user.Id(), notification);
             transaction.AddIfNotNull(notification.Init(user, notificationService));
 
+            transaction.Dispatch();
+        }
+
+        private void OnPlayerDie(PlayerController playerDead)
+        {
+            playerDead.Disable();
+
+            Transaction transaction = new() { reliable = true };
+            transaction.AddIfNotNull(new TeleportRequest(spawnPosition.position, spawnPosition.rotation) { users = new HashSet<UMI3DUser>() { playerDead.User } });
             transaction.Dispatch();
         }
 

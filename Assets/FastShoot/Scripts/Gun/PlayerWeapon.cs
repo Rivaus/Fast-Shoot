@@ -162,7 +162,7 @@ namespace com.quentintran.gun
             if (user.HasHeadMountedDisplay)
                 ray = new Ray(this.weapon.AimTransform.position, this.weapon.AimTransform.forward);
             else
-                ray = new Ray(controller.position.Struct() + controller.rotation.Quaternion() * Vector3.up * 0.2f, controller.rotation.Quaternion() * Vector3.forward);
+                ray = new Ray(controller.position.Struct() + controller.rotation.Quaternion() * (Vector3.up * 0.2f + Vector3.forward * .3f), controller.rotation.Quaternion() * Vector3.forward);
 
             Debug.DrawRay(ray.origin, ray.direction * this.weapon.Range, Color.red, .5f);
 

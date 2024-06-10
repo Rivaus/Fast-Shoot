@@ -161,14 +161,14 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\sound\weapons\gun-shoot-sound.wav
+      path: private\sound\weapons\494403__casadalenha__gun-shots.mp3
       format: gltf
-      extension: .wav
+      extension: .mp3
       isInBundle: 0
       pathIfInBundle: 
       metrics:
         resolution: 0
-        size: 514.82
+        size: 22.944
       isInLibrary: 0
       libraryKey: {fileID: 0}
 --- !u!1001 &6992231848332901398

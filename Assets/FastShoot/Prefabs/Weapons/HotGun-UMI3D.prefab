@@ -161,14 +161,14 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\sound\weapons\shot-gun-shoot.wav
+      path: private\sound\weapons\257234__javierzumer__fire-shot.wav
       format: gltf
       extension: .wav
       isInBundle: 0
       pathIfInBundle: 
       metrics:
         resolution: 0
-        size: 194.16
+        size: 146.052
       isInLibrary: 0
       libraryKey: {fileID: 0}
 --- !u!1001 &8046829239890224603

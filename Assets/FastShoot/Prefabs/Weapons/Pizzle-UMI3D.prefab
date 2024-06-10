@@ -130,14 +130,14 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\sound\weapons\sniper-shoot-sound.wav
+      path: private\sound\weapons\608797__novasoundtechnology__nova-cartoon-gunshot-heavy-noise-reduction-shot-gun-shooting-nova-sound.wav
       format: gltf
       extension: .wav
       isInBundle: 0
       pathIfInBundle: 
       metrics:
         resolution: 0
-        size: 690.146
+        size: 441.226
       isInLibrary: 0
       libraryKey: {fileID: 0}
 --- !u!1 &6527758035244756772

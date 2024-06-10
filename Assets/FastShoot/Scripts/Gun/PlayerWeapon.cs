@@ -28,6 +28,9 @@ namespace com.quentintran.gun
         [SerializeField]
         private UMI3DAudioPlayer audioSource = null;
 
+        [SerializeField]
+        private UMI3DAudioPlayer errorAudioSource = null;
+
         private UMI3DTrackedUser user;
 
         private BoneBinding binding = null;
@@ -37,6 +40,7 @@ namespace com.quentintran.gun
             Debug.Assert(interactable != null);
             Debug.Assert(shootEvent != null);
             Debug.Assert(audioSource != null);
+            Debug.Assert(errorAudioSource != null);
 
             this.shootEvent.onTrigger.AddListener(Shoot);
         }
@@ -141,7 +145,13 @@ namespace com.quentintran.gun
 
             if(Time.time < lastTimeShoot + this.weapon.FireRate)
             {
-                Debug.Log("Add feedback");
+                Transaction t = new() { reliable = true };
+                t.AddIfNotNull(this.errorAudioSource.objectPlaying.SetValue(false));
+                t.AddIfNotNull(this.errorAudioSource.objectPlaying.SetValue(true));
+                t.Dispatch();
+
+                Debug.Log("ERROR");
+
                 return;
             }
 
@@ -158,18 +168,22 @@ namespace com.quentintran.gun
 
             if (Physics.Raycast(ray, out RaycastHit hit, this.weapon.Range))
             {
-                if (hit.transform.TryGetComponent(out PlayerController otherPlayer))
+                if (hit.transform.TryGetComponent(out PlayerController otherPlayer) && otherPlayer.User != this.user)
                 {
-                    otherPlayer.Hit(user, this.weapon.Damage);
-                    Debug.Log("Player hit " + otherPlayer.Username); 
-                }else
+                    if (otherPlayer.User != this.user)
+                    {
+                        otherPlayer.Hit(user, this.weapon.Damage);
+                        Debug.Log("Player hit " + otherPlayer.Username);
+                    }
+                }
+                else
                 {
-                    Debug.Log("Wall hit ");
                     DecalManager.Instance.DisplayBulletDecal(hit.point, hit.normal);
                 }
             }
 
             Transaction transaction = new() { reliable = true };
+            transaction.AddIfNotNull(this.errorAudioSource.objectPlaying.SetValue(false));
             transaction.AddIfNotNull(this.audioSource.objectPlaying.SetValue(false));
             transaction.AddIfNotNull(this.audioSource.objectPlaying.SetValue(true));
             transaction.Dispatch();

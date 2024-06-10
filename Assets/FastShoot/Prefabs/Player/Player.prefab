@@ -495,6 +495,7 @@ MonoBehaviour:
   interactable: {fileID: 1937619940509521128}
   shootEvent: {fileID: 7424261926195179574}
   audioSource: {fileID: 8857246673118027688}
+  errorAudioSource: {fileID: 3242136460520367223}
 --- !u!114 &1937619940509521128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,8 +597,8 @@ MonoBehaviour:
   volume: 1
   pitch: 1
   spatialBlend: 1
-  volumeAttenuationMode: 1
-  maxDistance: 15
+  volumeAttenuationMode: 0
+  maxDistance: 20
   volumeCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -622,6 +623,130 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4863373041891115900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6253883777002921850}
+  - component: {fileID: 3242136460520367223}
+  - component: {fileID: 1747308333611888923}
+  m_Layer: 0
+  m_Name: ErrorWeaponAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6253883777002921850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863373041891115900}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0014999807, y: 1.8809999, z: 0.0000000010728769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5845923568832847896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3242136460520367223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863373041891115900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d747f49b0f794448b045675f03c295b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playing: 0
+  looping: 0
+  startTime: 0
+  pauseFrame: 0
+  node: {fileID: 1747308333611888923}
+  audioResources:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\sound\weapons\204042__duckduckpony__weapons_gun_small_reload_001.mp3
+      format: obj
+      extension: .mp3
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 5.256
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  volume: 0.75
+  pitch: 1
+  spatialBlend: 1
+  volumeAttenuationMode: 0
+  maxDistance: 20
+  volumeCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 50
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1747308333611888923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863373041891115900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1b8f010a6494546a92b9e4cb66b65e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
 --- !u!1 &7608956114204695428
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +784,7 @@ Transform:
   - {fileID: 3943397580160895110}
   - {fileID: 6894362920698294898}
   - {fileID: 3100957407254530972}
+  - {fileID: 6253883777002921850}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7126350542938221804

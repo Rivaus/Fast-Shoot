@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using umi3d.edk;
+using umi3d.edk.interaction;
 using UnityEngine;
+using static umi3d.edk.interaction.AbstractInteraction;
 
 namespace com.quentintran.player
 {
@@ -32,6 +34,12 @@ namespace com.quentintran.player
         [SerializeField]
         Transform[] spawns;
 
+        [SerializeField]
+        UMI3DNode spawnPoint;
+
+        [SerializeField]
+        UMI3DEvent spawnPointEvent;
+
         [Space]
         [SerializeField]
         PlayerController playerTemplate = null;
@@ -40,8 +48,6 @@ namespace com.quentintran.player
 
         Dictionary<ulong, PlayerController> playerControllers = new();
         Dictionary<ulong, PlayerNotification> playerNotifications = new();
-
-        private bool partyStarted = false;
 
         #endregion
 
@@ -62,6 +68,8 @@ namespace com.quentintran.player
             Debug.Assert(playerTemplate != null);
             Debug.Assert(playerNotificationTemplate != null);
             Debug.Assert(spawns.Length > 0);
+            Debug.Assert(spawnPoint != null);
+            Debug.Assert(spawnPointEvent != null);
 
             userManagerService = userManager;
             notificationService = new NotificationService();
@@ -76,6 +84,9 @@ namespace com.quentintran.player
         {
             UMI3DEnvironment.objectStartPosition.SetValue(spawnPosition.position);
             UMI3DEnvironment.objectStartOrientation.SetValue(spawnPosition.rotation);
+
+            spawnPoint.objectActive.SetValue(false);
+            spawnPointEvent.onTrigger.AddListener(SpawnPlayer);
         }
 
         private void Update()
@@ -119,6 +130,8 @@ namespace com.quentintran.player
 
             Transaction transaction = new() { reliable = true };
             transaction.AddIfNotNull(new TeleportRequest(spawnPosition.position, spawnPosition.rotation) { users = new HashSet<UMI3DUser>() { playerDead.User } });
+            transaction.AddIfNotNull(spawnPoint.objectActive.SetValue(playerDead.User, true));
+
             transaction.Dispatch();
         }
 
@@ -171,7 +184,7 @@ namespace com.quentintran.player
                 this.notificationService.NotifyUsers("La repas va bientôt commencer !", 1f);
                 await Task.Delay(1000);
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     this.notificationService.NotifyUsers((5 - i).ToString(), 1f);
                     await Task.Delay(1000);
@@ -191,9 +204,27 @@ namespace com.quentintran.player
                 }
 
                 transaction.Dispatch();
-
-                partyStarted = true;
             }
+        }
+
+        private void SpawnPlayer(InteractionEventContent content)
+        {
+            Transaction transaction = new() { reliable = true };
+
+            if (playerControllers.TryGetValue(content.user.Id(), out PlayerController player))
+            {
+                Transform spawn = spawns[UnityEngine.Random.Range(0, spawns.Length - 1)];
+                TeleportRequest tp = new(spawn.position, spawn.rotation) { users = new HashSet<UMI3DUser>() { player.User } };
+                transaction.AddIfNotNull(tp);
+                player.EnableForParty();
+
+                transaction.AddIfNotNull(spawnPoint.objectActive.SetValue(player.User, false));
+            }
+            else
+                Debug.LogError("Internal error");
+
+
+            transaction.Dispatch();
         }
 
         #endregion

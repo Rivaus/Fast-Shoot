@@ -191,8 +191,6 @@ namespace com.quentintran.player
         {
             this.Health -= damage;
 
-            Debug.Log("HEALTH " + Health);
-
             if (this.Health == 0)
             {
                 string shooterName = UserManager.Instance.GetUserName(shooter.Id());

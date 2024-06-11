@@ -49,6 +49,8 @@ namespace com.quentintran.player
         Dictionary<ulong, PlayerController> playerControllers = new();
         Dictionary<ulong, PlayerNotification> playerNotifications = new();
 
+        private bool isStarted = false;
+
         #endregion
 
         #region Fields
@@ -120,6 +122,9 @@ namespace com.quentintran.player
 
             playerNotifications.Add(user.Id(), notification);
             transaction.AddIfNotNull(notification.Init(user, notificationService));
+
+            if (isStarted)
+                transaction.AddIfNotNull(spawnPoint.objectActive.SetValue(user, true));
 
             transaction.Dispatch();
         }
@@ -204,6 +209,8 @@ namespace com.quentintran.player
                 }
 
                 transaction.Dispatch();
+
+                isStarted = true;
             }
         }
 

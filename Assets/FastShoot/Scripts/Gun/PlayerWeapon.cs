@@ -160,7 +160,7 @@ namespace com.quentintran.gun
             Ray ray;
 
             if (user.HasHeadMountedDisplay)
-                ray = new Ray(this.weapon.AimTransform.position, this.weapon.AimTransform.forward);
+                ray = new Ray(this.weapon.AimTransform.position, this.weapon.AimTransform.right);
             else
                 ray = new Ray(controller.position.Struct() + controller.rotation.Quaternion() * (Vector3.up * 0.2f + Vector3.forward * .3f), controller.rotation.Quaternion() * Vector3.forward);
 

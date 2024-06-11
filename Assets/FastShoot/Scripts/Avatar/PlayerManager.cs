@@ -165,7 +165,7 @@ namespace com.quentintran.player
         }
 
         [ContextMenu("Start Party")]
-        private async void StartParty()
+        public async void StartParty()
         {
             bool ready = true;
 

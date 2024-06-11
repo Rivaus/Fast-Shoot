@@ -64,7 +64,7 @@ namespace com.quentintran.player
                 offsetRotation = Quaternion.identity,
                 syncRotation = true,
                 syncPosition = true,
-                bindToController = (user as UMI3DCollaborationUser).HasHeadMountedDisplay,
+                bindToController = !(user as UMI3DCollaborationUser).HasHeadMountedDisplay,
             };
             operations.AddRange(BindingManager.Instance.AddBinding(binding));
 

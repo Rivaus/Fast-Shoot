@@ -17,32 +17,67 @@ namespace com.quentintran.gun
 {
     public class PlayerWeapon : MonoBehaviour
     {
+        #region Fields
+
+        /// <summary>
+        /// Current weapon
+        /// </summary>
         private Weapon weapon;
 
+        /// <summary>
+        /// Interactable to shoot.
+        /// </summary>
         [SerializeField]
         private UMI3DInteractable interactable = null;
 
+        /// <summary>
+        /// Alternative interactable to shoot.
+        /// </summary>
         [SerializeField]
-        private UMI3DEvent shootEvent = null;
+        private UMI3DInteractable alternativeInteractable = null;
 
+        [SerializeField]
+        private UMI3DEvent shootEvent, alternativeShootEvent = null;
+
+        /// <summary>
+        /// Audio source for shoot sound effect.
+        /// </summary>
         [SerializeField]
         private UMI3DAudioPlayer audioSource = null;
 
+        /// <summary>
+        /// Audio source for error sound effect.
+        /// </summary>
         [SerializeField]
         private UMI3DAudioPlayer errorAudioSource = null;
 
+        /// <summary>
+        /// Current user who has the weapon
+        /// </summary>
         private UMI3DTrackedUser user;
 
         private BoneBinding binding = null;
 
+        /// <summary>
+        /// Last time user shoot.
+        /// </summary>
+        float lastTimeShoot = 0f;
+
+        #endregion
+
+        #region Methods
+
         private void Start()
         {
+            Debug.Assert(alternativeInteractable != null);
             Debug.Assert(interactable != null);
+            Debug.Assert(alternativeShootEvent != null);
             Debug.Assert(shootEvent != null);
             Debug.Assert(audioSource != null);
             Debug.Assert(errorAudioSource != null);
 
             this.shootEvent.onTrigger.AddListener(Shoot);
+            this.alternativeShootEvent.onTrigger.AddListener(Shoot);
         }
 
         public void EquipWeapon(UMI3DTrackedUser user, Weapon weaponTemplate, uint boneType)
@@ -119,12 +154,9 @@ namespace com.quentintran.gun
 
             Transaction transaction = new() { reliable = true };
 
-            if (user.HasHeadMountedDisplay)
-            {
-                Debug.Log("TODO");
-            }
-
             transaction.AddIfNotNull(this.interactable.GetProjectTool(false, new HashSet<UMI3DUser> { this.user }));
+            if (user.HasHeadMountedDisplay)
+                transaction.AddIfNotNull(this.alternativeInteractable.GetProjectTool(false, new HashSet<UMI3DUser> { this.user }));
 
             transaction.Dispatch();
         }
@@ -132,11 +164,13 @@ namespace com.quentintran.gun
         public void Disable()
         {
             Transaction transaction = new() { reliable = true };
+
             transaction.AddIfNotNull(this.interactable.GetReleaseTool(new HashSet<UMI3DUser> { this.user }));
+            if (user.HasHeadMountedDisplay)
+                transaction.AddIfNotNull(this.alternativeInteractable.GetReleaseTool(new HashSet<UMI3DUser> { this.user }));
+
             transaction.Dispatch();
         }
-
-        float lastTimeShoot = 0f;
 
         private void Shoot(InteractionEventContent content)
         {
@@ -149,8 +183,6 @@ namespace com.quentintran.gun
                 t.AddIfNotNull(this.errorAudioSource.objectPlaying.SetValue(false));
                 t.AddIfNotNull(this.errorAudioSource.objectPlaying.SetValue(true));
                 t.Dispatch();
-
-                Debug.Log("ERROR");
 
                 return;
             }
@@ -198,6 +230,8 @@ namespace com.quentintran.gun
 
             return operations;
         }
+
+        #endregion
     }
 
 }

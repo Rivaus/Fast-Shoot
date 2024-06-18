@@ -1122,6 +1122,7 @@ MonoBehaviour:
   - {fileID: 3646411589012539974}
   - {fileID: 3530149659657752597}
   heathUIContainer: {fileID: 544302315729916344}
+  autoHealDelay: 4
 --- !u!114 &498859988162470689
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,6 +44,11 @@ namespace com.quentintran.player
         [SerializeField]
         private UMI3DNode heathUIContainer = null;
 
+        [SerializeField]
+        private float autoHealDelay = 1f;
+
+        private Coroutine autoHealCoroutine;
+
         public UMI3DTrackedUser User { get; private set; }
 
         private BoneBinding avatarBinding = null;
@@ -93,6 +98,14 @@ namespace com.quentintran.player
                 }
 
                 transaction.Dispatch();
+
+                if (health < MAX_HEALTH)
+                {
+                    if (autoHealCoroutine is not null)
+                        StopCoroutine(autoHealCoroutine);
+
+                    autoHealCoroutine = StartCoroutine(AutoHealCoroutine());
+                }
             }
         }
 
@@ -231,6 +244,15 @@ namespace com.quentintran.player
             transaction = new() { reliable = true };
             transaction.AddIfNotNull(heathUIContainer.objectActive.SetValue(u, false));
             transaction.Dispatch();
+        }
+
+        private IEnumerator AutoHealCoroutine()
+        {
+            yield return new WaitForSeconds(autoHealDelay);
+
+            Health += (MAX_HEALTH / healthPoints.Length);
+
+            this.autoHealCoroutine = null;
         }
 
         #endregion

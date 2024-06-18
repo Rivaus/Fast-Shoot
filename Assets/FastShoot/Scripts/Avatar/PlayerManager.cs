@@ -220,6 +220,12 @@ namespace com.quentintran.player
 
             if (playerControllers.TryGetValue(content.user.Id(), out PlayerController player))
             {
+                if (!player.IsReady)
+                {
+                    this.notificationService.NotifyUser("Choisi une arme avant de partir au combat !", content.user.Id(), 3);
+                    return;
+                }
+
                 Transform spawn = spawns[UnityEngine.Random.Range(0, spawns.Length - 1)];
                 TeleportRequest tp = new(spawn.position, spawn.rotation) { users = new HashSet<UMI3DUser>() { player.User } };
                 transaction.AddIfNotNull(tp);

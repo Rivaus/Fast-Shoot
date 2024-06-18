@@ -45,13 +45,22 @@ namespace com.quentintran.player
         private UMI3DNode heathUIContainer = null;
 
         [SerializeField]
+        private UMI3DNode[] damageFeedbacks = null;
+
+        [SerializeField]
+        private UMI3DNode damageContainer = null;
+
+        [SerializeField]
+        private Vector3 damageContainerOffset = Vector3.zero;
+
+        [SerializeField]
         private float autoHealDelay = 1f;
 
         private Coroutine autoHealCoroutine;
 
         public UMI3DTrackedUser User { get; private set; }
 
-        private BoneBinding avatarBinding = null;
+        private BoneBinding avatarBinding, damageBinding = null;
 
         private UserTrackingFrameDto trackingFrame;
 
@@ -95,6 +104,7 @@ namespace com.quentintran.player
                 {
                     float threshold = (i + 1) * (MAX_HEALTH / healthPoints.Length);
                     transaction.AddIfNotNull(healthPoints[i].objectActive.SetValue(threshold <= health));
+                    transaction.AddIfNotNull(damageFeedbacks[i].objectActive.SetValue(threshold <= MAX_HEALTH - health));
                 }
 
                 transaction.Dispatch();
@@ -121,6 +131,8 @@ namespace com.quentintran.player
             Debug.Assert(stepAudioSource != null);
             Debug.Assert(weaponController != null);
             Debug.Assert(heathUIContainer != null);
+            Debug.Assert(damageContainer != null);
+            Debug.Assert(damageFeedbacks.Length == healthPoints.Length);
         }
 
         internal List<Operation> Init(UMI3DUser user, string username)
@@ -147,6 +159,16 @@ namespace com.quentintran.player
                 syncPosition = true
             };
             operations.AddRange(BindingManager.Instance.AddBinding(avatarBinding));
+
+            damageBinding = new(damageContainer.Id(), user.Id(), BoneType.Viewpoint)
+            {
+                offsetPosition = damageContainerOffset,
+                offsetRotation = Quaternion.identity,
+                syncRotation = true,
+                syncPosition = true,
+                bindToController = true
+            };
+            operations.AddRange(BindingManager.Instance.AddBinding(damageBinding));
 
             return operations;
         }
@@ -178,6 +200,7 @@ namespace com.quentintran.player
 
             operations.AddRange(this.weaponController.GetDelete());
             operations.AddRange(BindingManager.Instance.RemoveBinding(avatarBinding) ?? new List<Operation>());
+            operations.AddRange(BindingManager.Instance.RemoveBinding(damageBinding) ?? new List<Operation>());
 
             foreach (UMI3DLoadableEntity entity in GetComponentsInChildren<UMI3DLoadableEntity>())
             {

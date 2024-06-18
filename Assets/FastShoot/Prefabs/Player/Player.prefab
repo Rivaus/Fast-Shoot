@@ -231,6 +231,100 @@ MonoBehaviour:
     variants: []
   sprite:
     variants: []
+--- !u!1 &1625568226408260561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6012404461915032667}
+  - component: {fileID: 424322439709941057}
+  m_Layer: 5
+  m_Name: DamageFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6012404461915032667
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625568226408260561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3943397580160895110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &424322439709941057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625568226408260561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6071f500297a64496afaea9a966c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+  overrideModelMaterials: 0
+  materialsOverrider: []
+  castShadow: 1
+  receiveShadow: 1
+  blendShapesValues: []
+  lockColliders: 0
+  model:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\UI\DamageFeedback.glb
+      format: gltf
+      extension: .glb
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 3.04
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  idGenerator: '{{pid}}_[{{name}}]'
+  updateSkinnedMeshRendererWhenOffscreen: 0
+  areSubobjectsTracked: 0
+  areSubobjectsAlreadyMarked: 0
+  isRightHanded: 1
+  isPartOfNavmesh: 0
+  isTraversable: 1
 --- !u!1 &2257754539457599770
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +433,163 @@ MonoBehaviour:
   customMeshCollider:
     variants: []
   sprite:
+    variants: []
+--- !u!1 &2324600580716170746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7707519219180949542}
+  - component: {fileID: 8335739583421125550}
+  m_Layer: 0
+  m_Name: Damage_01 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7707519219180949542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324600580716170746}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5519369, y: 0.83388585, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3576089162003581019}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 67}
+--- !u!114 &8335739583421125550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324600580716170746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6071f500297a64496afaea9a966c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+  overrideModelMaterials: 0
+  materialsOverrider: []
+  castShadow: 1
+  receiveShadow: 1
+  blendShapesValues: []
+  lockColliders: 0
+  model:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\UI\DamageFeedback.glb
+      format: gltf
+      extension: .glb
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 3.04
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  idGenerator: '{{pid}}_[{{name}}]'
+  updateSkinnedMeshRendererWhenOffscreen: 0
+  areSubobjectsTracked: 0
+  areSubobjectsAlreadyMarked: 0
+  isRightHanded: 1
+  isPartOfNavmesh: 0
+  isTraversable: 1
+--- !u!1 &2461972476856480084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3576089162003581019}
+  - component: {fileID: 6843268445929718557}
+  m_Layer: 0
+  m_Name: DamageFeedbacks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3576089162003581019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2461972476856480084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7057764856041699525}
+  - {fileID: 4161009180043999768}
+  - {fileID: 7521048620069460702}
+  - {fileID: 7707519219180949542}
+  m_Father: {fileID: 5845923568832847896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6843268445929718557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2461972476856480084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1b8f010a6494546a92b9e4cb66b65e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
     variants: []
 --- !u!1 &3252272707874957144
 GameObject:
@@ -1058,6 +1309,186 @@ MonoBehaviour:
   isMeshCustom: 0
   customMeshCollider:
     variants: []
+--- !u!1 &5526014209772498882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7521048620069460702}
+  - component: {fileID: 7428012754371839777}
+  m_Layer: 0
+  m_Name: Damage_01 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7521048620069460702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5526014209772498882}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5519369, y: 0.83388585, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3576089162003581019}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -67}
+--- !u!114 &7428012754371839777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5526014209772498882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6071f500297a64496afaea9a966c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+  overrideModelMaterials: 0
+  materialsOverrider: []
+  castShadow: 1
+  receiveShadow: 1
+  blendShapesValues: []
+  lockColliders: 0
+  model:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\UI\DamageFeedback.glb
+      format: gltf
+      extension: .glb
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 3.04
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  idGenerator: '{{pid}}_[{{name}}]'
+  updateSkinnedMeshRendererWhenOffscreen: 0
+  areSubobjectsTracked: 0
+  areSubobjectsAlreadyMarked: 0
+  isRightHanded: 1
+  isPartOfNavmesh: 0
+  isTraversable: 1
+--- !u!1 &5645177830874282056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7057764856041699525}
+  - component: {fileID: 4543164185881890643}
+  m_Layer: 0
+  m_Name: Damage_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7057764856041699525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645177830874282056}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.19080894, y: 0.9816273, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3576089162003581019}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -22}
+--- !u!114 &4543164185881890643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645177830874282056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6071f500297a64496afaea9a966c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+  overrideModelMaterials: 0
+  materialsOverrider: []
+  castShadow: 1
+  receiveShadow: 1
+  blendShapesValues: []
+  lockColliders: 0
+  model:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\UI\DamageFeedback.glb
+      format: gltf
+      extension: .glb
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 3.04
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  idGenerator: '{{pid}}_[{{name}}]'
+  updateSkinnedMeshRendererWhenOffscreen: 0
+  areSubobjectsTracked: 0
+  areSubobjectsAlreadyMarked: 0
+  isRightHanded: 1
+  isPartOfNavmesh: 0
+  isTraversable: 1
 --- !u!1 &7608956114204695428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1527,7 @@ Transform:
   - {fileID: 6894362920698294898}
   - {fileID: 3100957407254530972}
   - {fileID: 6253883777002921850}
+  - {fileID: 3576089162003581019}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7126350542938221804
@@ -1122,6 +1554,13 @@ MonoBehaviour:
   - {fileID: 3646411589012539974}
   - {fileID: 3530149659657752597}
   heathUIContainer: {fileID: 544302315729916344}
+  damageFeedbacks:
+  - {fileID: 4543164185881890643}
+  - {fileID: 2319337275085414827}
+  - {fileID: 7428012754371839777}
+  - {fileID: 8335739583421125550}
+  damageContainer: {fileID: 6843268445929718557}
+  damageContainerOffset: {x: 0, y: 0, z: 1}
   autoHealDelay: 4
 --- !u!114 &498859988162470689
 MonoBehaviour:
@@ -1230,6 +1669,7 @@ RectTransform:
   m_Children:
   - {fileID: 7881894074098726796}
   - {fileID: 5849740216151924961}
+  - {fileID: 6012404461915032667}
   m_Father: {fileID: 5845923568832847896}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1532,6 +1972,96 @@ MonoBehaviour:
   isRightHanded: 1
   isPartOfNavmesh: 0
   isTraversable: 0
+--- !u!1 &8060769333793376272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4161009180043999768}
+  - component: {fileID: 2319337275085414827}
+  m_Layer: 0
+  m_Name: Damage_01 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4161009180043999768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060769333793376272}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.19080894, y: 0.9816273, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3576089162003581019}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 22}
+--- !u!114 &2319337275085414827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060769333793376272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6071f500297a64496afaea9a966c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  nodeName: 
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 0
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+  overrideModelMaterials: 0
+  materialsOverrider: []
+  castShadow: 1
+  receiveShadow: 1
+  blendShapesValues: []
+  lockColliders: 0
+  model:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: private\UI\DamageFeedback.glb
+      format: gltf
+      extension: .glb
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 3.04
+      isInLibrary: 0
+      libraryKey: {fileID: 0}
+  idGenerator: '{{pid}}_[{{name}}]'
+  updateSkinnedMeshRendererWhenOffscreen: 0
+  areSubobjectsTracked: 0
+  areSubobjectsAlreadyMarked: 0
+  isRightHanded: 1
+  isPartOfNavmesh: 0
+  isTraversable: 1
 --- !u!1 &8340956393957119267
 GameObject:
   m_ObjectHideFlags: 0

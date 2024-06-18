@@ -190,11 +190,17 @@ namespace com.quentintran.gun
             lastTimeShoot = Time.time;
 
             Ray ray;
+            Quaternion boneRot = content.boneRotation.Quaternion();
 
             if (user.HasHeadMountedDisplay)
+            {
+                if (binding.boneType == content.boneType)
+                    weapon.transform.SetPositionAndRotation(content.bonePosition.Struct() + boneRot * binding.offsetPosition, boneRot * binding.offsetRotation);
+
                 ray = new Ray(this.weapon.AimTransform.position, this.weapon.AimTransform.right);
+            }
             else
-                ray = new Ray(controller.position.Struct() + controller.rotation.Quaternion() * (Vector3.up * 0.2f + Vector3.forward * .3f), controller.rotation.Quaternion() * Vector3.forward);
+                ray = new Ray(content.bonePosition.Struct() + boneRot * (Vector3.forward * .3f), boneRot * Vector3.forward);
 
             Debug.DrawRay(ray.origin, ray.direction * this.weapon.Range, Color.red, .5f);
 

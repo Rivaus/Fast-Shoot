@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStatic: 0
-  active: 1
+  active: 0
   UMI3DAnchor: {fileID: 0}
   immersiveOnly: 0
   VolumeId: 0
@@ -497,8 +497,13 @@ MonoBehaviour:
   isMeshCustom: 0
   customMeshCollider:
     variants: []
-  overrideModelMaterials: 0
-  materialsOverrider: []
+  overrideModelMaterials: 1
+  materialsOverrider:
+  - newMaterial: {fileID: 11400000, guid: 9eb70812cd059b646b1edd41f0db6cbc, type: 2}
+    materialListToOverride:
+      overrideAllMaterial: 1
+      addMaterialIfNotExists: 0
+      overidedMaterials: []
   castShadow: 1
   receiveShadow: 1
   blendShapesValues: []
@@ -554,9 +559,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7521048620069460702}
   - {fileID: 7057764856041699525}
   - {fileID: 4161009180043999768}
-  - {fileID: 7521048620069460702}
   - {fileID: 7707519219180949542}
   m_Father: {fileID: 5845923568832847896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1354,7 +1359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStatic: 0
-  active: 1
+  active: 0
   UMI3DAnchor: {fileID: 0}
   immersiveOnly: 0
   VolumeId: 0
@@ -1372,8 +1377,13 @@ MonoBehaviour:
   isMeshCustom: 0
   customMeshCollider:
     variants: []
-  overrideModelMaterials: 0
-  materialsOverrider: []
+  overrideModelMaterials: 1
+  materialsOverrider:
+  - newMaterial: {fileID: 11400000, guid: 3e7c51735f0b3b549805ca0b6698317b, type: 2}
+    materialListToOverride:
+      overrideAllMaterial: 1
+      addMaterialIfNotExists: 0
+      overidedMaterials: []
   castShadow: 1
   receiveShadow: 1
   blendShapesValues: []
@@ -1444,7 +1454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStatic: 0
-  active: 1
+  active: 0
   UMI3DAnchor: {fileID: 0}
   immersiveOnly: 0
   VolumeId: 0
@@ -1462,8 +1472,13 @@ MonoBehaviour:
   isMeshCustom: 0
   customMeshCollider:
     variants: []
-  overrideModelMaterials: 0
-  materialsOverrider: []
+  overrideModelMaterials: 1
+  materialsOverrider:
+  - newMaterial: {fileID: 11400000, guid: 9eb70812cd059b646b1edd41f0db6cbc, type: 2}
+    materialListToOverride:
+      overrideAllMaterial: 1
+      addMaterialIfNotExists: 0
+      overidedMaterials: []
   castShadow: 1
   receiveShadow: 1
   blendShapesValues: []
@@ -1556,8 +1571,8 @@ MonoBehaviour:
   heathUIContainer: {fileID: 544302315729916344}
   damageFeedbacks:
   - {fileID: 4543164185881890643}
-  - {fileID: 2319337275085414827}
   - {fileID: 7428012754371839777}
+  - {fileID: 2319337275085414827}
   - {fileID: 8335739583421125550}
   damageContainer: {fileID: 6843268445929718557}
   damageContainerOffset: {x: 0, y: 0, z: 1}
@@ -2017,7 +2032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStatic: 0
-  active: 1
+  active: 0
   UMI3DAnchor: {fileID: 0}
   immersiveOnly: 0
   VolumeId: 0
@@ -2035,8 +2050,13 @@ MonoBehaviour:
   isMeshCustom: 0
   customMeshCollider:
     variants: []
-  overrideModelMaterials: 0
-  materialsOverrider: []
+  overrideModelMaterials: 1
+  materialsOverrider:
+  - newMaterial: {fileID: 11400000, guid: 3e7c51735f0b3b549805ca0b6698317b, type: 2}
+    materialListToOverride:
+      overrideAllMaterial: 1
+      addMaterialIfNotExists: 0
+      overidedMaterials: []
   castShadow: 1
   receiveShadow: 1
   blendShapesValues: []

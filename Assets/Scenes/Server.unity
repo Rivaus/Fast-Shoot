@@ -1628,7 +1628,9 @@ MonoBehaviour:
   animationIds: 
   poseOverriderContainerIds: 
   materialSOs: []
-  PreloadedMaterials: []
+  PreloadedMaterials:
+  - {fileID: 11400000, guid: 9eb70812cd059b646b1edd41f0db6cbc, type: 2}
+  - {fileID: 11400000, guid: 3e7c51735f0b3b549805ca0b6698317b, type: 2}
 --- !u!1 &1059030918
 GameObject:
   m_ObjectHideFlags: 0

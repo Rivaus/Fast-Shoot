@@ -104,7 +104,7 @@ namespace com.quentintran.player
                 {
                     float threshold = (i + 1) * (MAX_HEALTH / healthPoints.Length);
                     transaction.AddIfNotNull(healthPoints[i].objectActive.SetValue(threshold <= health));
-                    transaction.AddIfNotNull(damageFeedbacks[i].objectActive.SetValue(threshold <= MAX_HEALTH - health));
+                    transaction.AddIfNotNull(damageFeedbacks[i].objectActive.SetValue(this.User, threshold <= MAX_HEALTH - health));
                 }
 
                 transaction.Dispatch();
@@ -170,6 +170,8 @@ namespace com.quentintran.player
             };
             operations.AddRange(BindingManager.Instance.AddBinding(damageBinding));
 
+            this.Health = MAX_HEALTH;
+
             return operations;
         }
 
@@ -233,6 +235,8 @@ namespace com.quentintran.player
 
                 PlayerManager.NotificationService.NotifyUser($"Retour en cuisine, { shooterName } te prive de repas.", this.User.Id(), 4f);
                 PlayerManager.NotificationService.NotifyUser($"Tu viens de priver { this.Username } de dessert !", shooter.Id(), 4f);
+
+                this.Health = MAX_HEALTH;
 
                 this.OnPlayerDie?.Invoke(this);
             }

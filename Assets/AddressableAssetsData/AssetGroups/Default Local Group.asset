@@ -53,6 +53,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 160a0250efd8b044c8a89c1b0f5955c0
+    m_Address: Assets/FastShoot/UI/Player/M_Damage_Feedback.mat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc80a77206d894f418c77f66b431095a
+    m_Address: Assets/FastShoot/UI/Player/M_Damage_Feedback_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 78d5982b083592c4cbc564ff30bdaa52, type: 2}
   m_SchemaSet:

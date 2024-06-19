@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1560924010815547968}
   node: {fileID: 4209825992052271808}
-  uiPositionOffset: {x: 0, y: 0, z: 1}
+  uiPositionOffset: {x: 0, y: 0.2, z: 1}
 --- !u!1 &5879729799431916993
 GameObject:
   m_ObjectHideFlags: 0

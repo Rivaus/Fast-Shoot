@@ -65,6 +65,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5efde66f971dbd64196bfd89321e6762
+    m_Address: Assets/FastShoot/Material/Decals/BulletDecal/BulletPlayerDecal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 78d5982b083592c4cbc564ff30bdaa52, type: 2}
   m_SchemaSet:

@@ -1306,8 +1306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4a92314b77387489eb99b9fe417202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTemplate: {fileID: 8103206527668072526, guid: 20d976c12331f8744af1097075cd0ed1, type: 3}
-  bloodTemplate: {fileID: 0}
+  templates:
+  - key: DECAL_WALL_HIT
+    template: {fileID: 8103206527668072526, guid: 20d976c12331f8744af1097075cd0ed1, type: 3}
+  - key: DECAL_PLAYER_HIT
+    template: {fileID: 8103206527668072526, guid: b220e7690b72da745abfd28ed6f088e1, type: 3}
   decalScene: {fileID: 850326017}
   poolNumber: 50
   decalDisplayTime: 5

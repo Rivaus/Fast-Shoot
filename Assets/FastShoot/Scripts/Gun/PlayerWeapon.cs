@@ -211,12 +211,12 @@ namespace com.quentintran.gun
                     if (otherPlayer.User != this.user)
                     {
                         otherPlayer.Hit(user, this.weapon.Damage);
-                        Debug.Log("Player hit " + otherPlayer.Username);
+                        DecalManager.Instance.DisplayDecal("DECAL_PLAYER_HIT", hit.point, hit.normal);
                     }
                 }
                 else
                 {
-                    DecalManager.Instance.DisplayBulletDecal(hit.point, hit.normal);
+                    DecalManager.Instance.DisplayDecal("DECAL_WALL_HIT", hit.point, hit.normal);
                 }
             }
 

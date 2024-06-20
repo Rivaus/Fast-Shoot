@@ -9,10 +9,7 @@ namespace com.quentintran.server.shoot
     internal class DecalManager : SingleBehaviour<DecalManager>
     {
         [SerializeField]
-        private GameObject bulletTemplate = null;
-
-        [SerializeField]
-        private GameObject bloodTemplate = null;
+        private List<DecalTemplate> templates = new();
 
         [SerializeField]
         private UMI3DScene decalScene = null;
@@ -23,27 +20,39 @@ namespace com.quentintran.server.shoot
         [SerializeField]
         private float decalDisplayTime = 5f;
 
-        private PoolObject bullet, blood;
+        Dictionary<string, PoolObject> poolObjects = new();
 
         protected override void Awake()
         {
             base.Awake();
 
-            if (bulletTemplate is not null)
-                bullet = new PoolObject(bulletTemplate, decalDisplayTime, decalScene.transform, poolNumber, this);
+            foreach(DecalTemplate template in templates)
+            {
+                if (poolObjects.ContainsKey(template.key))
+                    continue;
 
-            if (bloodTemplate is not null)
-                blood = new PoolObject(bloodTemplate, decalDisplayTime, decalScene.transform, poolNumber, this);
+                poolObjects[template.key] = new PoolObject(template.template, decalDisplayTime, decalScene.transform, poolNumber, this);
+            }
         }
 
-        internal void DisplayBulletDecal(Vector3 position, Vector3 normal)
+        internal void DisplayDecal(string key, Vector3 position, Vector3 normal)
         {
-            bullet.DisplayObject(position + normal * .005f, position);
+            if (poolObjects.ContainsKey(key))
+            {
+                poolObjects[key].DisplayObject(position + normal * .005f, position);
+            }
+            else
+            {
+                Debug.LogError("No decals found with id " + key);
+            }
         }
 
-        internal void DisplayBloodDecal(Vector3 position, Vector3 normal)
+        [System.Serializable]
+        public class DecalTemplate
         {
-            blood.DisplayObject(position + normal * .1f, position);
+            public string key;
+
+            public GameObject template;
         }
     }
 
@@ -70,6 +79,7 @@ namespace com.quentintran.server.shoot
                 obj.transform.rotation = Quaternion.identity;
 
                 var model = obj.GetComponent<UMI3DModel>();
+                model.objectActive.SetValue(false);
                 objectQueue.Enqueue(model);
 
                 coroutineByObjects[model] = null;
@@ -102,9 +112,9 @@ namespace com.quentintran.server.shoot
             obj.transform.LookAt(lookAt);
 
             Transaction t = new Transaction { reliable = true };
-            t.AddIfNotNull(obj.objectActive.SetValue(true));
             t.AddIfNotNull(obj.objectPosition.SetValue(obj.transform.localPosition));
             t.AddIfNotNull(obj.objectRotation.SetValue(obj.transform.localRotation));
+            t.AddIfNotNull(obj.objectActive.SetValue(true));
             t.Dispatch();
 
             coroutineByObjects[obj] = mono.StartCoroutine(HideObject(obj));

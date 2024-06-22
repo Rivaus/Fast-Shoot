@@ -1411,14 +1411,14 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: private\default\level_01.bundle
+      path: private\default\level_01.unity.bundle
       format: unity_standalone_urp
       extension: .bundle
       isInBundle: 1
       pathIfInBundle: Assets/Scenes/Level_01.unity
       metrics:
         resolution: 0
-        size: 16200.358
+        size: 51417.03
       isInLibrary: 0
       libraryKey: {fileID: 0}
     - isLocalFile: 1

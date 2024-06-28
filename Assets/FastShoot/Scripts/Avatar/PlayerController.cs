@@ -39,7 +39,7 @@ namespace com.quentintran.player
         [Space]
         [Header("Health")]
         [SerializeField]
-        private UMI3DNode[] healthPoints = null;
+        private UMI3DNode healthFeedback = null;
 
         [SerializeField]
         private UMI3DNode heathUIContainer = null;
@@ -99,14 +99,7 @@ namespace com.quentintran.player
                 health = Mathf.Clamp(value, 0, MAX_HEALTH);
 
                 Transaction transaction = new() { reliable = true };
-
-                for (int i = 0; i < healthPoints.Length; i++)
-                {
-                    float threshold = (i + 1) * (MAX_HEALTH / healthPoints.Length);
-                    transaction.AddIfNotNull(healthPoints[i].objectActive.SetValue(threshold <= health));
-                    transaction.AddIfNotNull(damageFeedbacks[i].objectActive.SetValue(this.User, threshold <= MAX_HEALTH - health));
-                }
-
+                transaction.AddIfNotNull(healthFeedback.objectScale.SetValue(new Vector3(health / MAX_HEALTH, 1, 0)));
                 transaction.Dispatch();
 
                 if (health < MAX_HEALTH)
@@ -132,7 +125,7 @@ namespace com.quentintran.player
             Debug.Assert(weaponController != null);
             Debug.Assert(heathUIContainer != null);
             Debug.Assert(damageContainer != null);
-            Debug.Assert(damageFeedbacks.Length == healthPoints.Length);
+            Debug.Assert(damageFeedbacks.Length > 0);
         }
 
         internal List<Operation> Init(UMI3DUser user, string username)
@@ -277,7 +270,7 @@ namespace com.quentintran.player
         {
             yield return new WaitForSeconds(autoHealDelay);
 
-            Health += (MAX_HEALTH / healthPoints.Length);
+            Health += 25f;
 
             this.autoHealCoroutine = null;
         }

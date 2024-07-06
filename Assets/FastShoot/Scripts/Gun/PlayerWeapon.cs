@@ -12,6 +12,7 @@ using System;
 using UnityEngine.UIElements;
 using com.quentintran.player;
 using com.quentintran.server.shoot;
+using WebSocketSharp;
 
 namespace com.quentintran.gun
 {

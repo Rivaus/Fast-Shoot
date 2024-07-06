@@ -229,6 +229,9 @@ namespace com.quentintran.player
                 PlayerManager.NotificationService.NotifyUser($"Retour en cuisine, { shooterName } te prive de repas.", this.User.Id(), 4f);
                 PlayerManager.NotificationService.NotifyUser($"Tu viens de priver { this.Username } de dessert !", shooter.Id(), 4f);
 
+                ScoreManager.Instance.UserDie(this.User);
+                ScoreManager.Instance.UserKill(shooter);
+
                 this.Health = MAX_HEALTH;
 
                 this.OnPlayerDie?.Invoke(this);

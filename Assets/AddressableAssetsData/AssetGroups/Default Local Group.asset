@@ -23,6 +23,54 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ba454446fb7be34db57bee8ef437004
+    m_Address: Assets/FastShoot/Prefabs/Weapons/HotGun.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2379bdb45ac7f6b4c8c9677b77a0fc0d
+    m_Address: Assets/FastShoot/Prefabs/Weapons/Pistoda.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0091139c2fdc20e40919b4c617fbcad6
+    m_Address: Assets/FastShoot/Prefabs/Weapons/PizzFle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d05c0cd38b2acf74eb30e7abec42fe94
+    m_Address: Assets/FastShoot/Material/Decals/BloodDecal/BloodDecal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f0223b3e23c0784c968be48d4924764
+    m_Address: Assets/FastShoot/Material/Decals/BulletDecal/BulletDecal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5efde66f971dbd64196bfd89321e6762
+    m_Address: Assets/FastShoot/Material/Decals/BulletDecal/BulletPlayerDecal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 160a0250efd8b044c8a89c1b0f5955c0
+    m_Address: Assets/FastShoot/UI/Player/M_Damage_Feedback.mat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc80a77206d894f418c77f66b431095a
+    m_Address: Assets/FastShoot/UI/Player/M_Damage_Feedback_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 78d5982b083592c4cbc564ff30bdaa52, type: 2}
   m_SchemaSet:

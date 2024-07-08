@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44021642, g: 0.48875648, b: 0.5689347, a: 1}
+  m_IndirectSpecularColor: {r: 0.4377478, g: 0.48558444, b: 0.5664229, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1423,7 +1423,7 @@ MonoBehaviour:
       libraryKey: {fileID: 0}
     - isLocalFile: 1
       domain: 
-      path: private\android\level_01.bundle
+      path: private\android\level_01.unity.bundle
       format: unity_android_urp
       extension: .bundle
       isInBundle: 1

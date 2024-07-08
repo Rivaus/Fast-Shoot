@@ -28,3 +28,15 @@ MonoBehaviour:
         size: 459.581
       isInLibrary: 0
       libraryKey: {fileID: 0}
+    - isLocalFile: 1
+      domain: 
+      path: private\android\UI\m_damage_feedback_2.mat.bundle
+      format: unity_android_urp
+      extension: .bundle
+      isInBundle: 1
+      pathIfInBundle: Assets/FastShoot/UI/Player/M_Damage_Feedback_2.mat
+      metrics:
+        resolution: 0
+        size: 459.581
+      isInLibrary: 0
+      libraryKey: {fileID: 0}

@@ -100,6 +100,13 @@ namespace com.quentintran.player
 
                 Transaction transaction = new() { reliable = true };
                 transaction.AddIfNotNull(healthFeedback.objectScale.SetValue(new Vector3(health / MAX_HEALTH, 1, 0)));
+
+                for (int i = 0; i < damageFeedbacks.Length; i++)
+                {
+                    float threshold = (i + 1) * (MAX_HEALTH / damageFeedbacks.Length);
+                    transaction.AddIfNotNull(damageFeedbacks[i].objectActive.SetValue(this.User, threshold <= MAX_HEALTH - health));
+                }
+
                 transaction.Dispatch();
 
                 if (health < MAX_HEALTH)

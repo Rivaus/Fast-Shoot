@@ -22,6 +22,9 @@ namespace com.quentintran.player
         [SerializeField]
         UserManager userManager = null;
 
+        [SerializeField]
+        private UMI3DAudioPlayer partyAudio;
+
         IUserManagerService userManagerService = null;
         INotificationService notificationService = null;
 
@@ -65,6 +68,7 @@ namespace com.quentintran.player
         private void Awake()
         {
             Debug.Assert(userManager != null);
+            Debug.Assert(partyAudio != null);
             Debug.Assert(playerScene != null);
             Debug.Assert(spawnPosition != null);
             Debug.Assert(playerTemplate != null);
@@ -186,6 +190,11 @@ namespace com.quentintran.player
 
             if (ready)
             {
+                Transaction transaction = new() { reliable = true };
+                transaction.AddIfNotNull(partyAudio.objectPlaying.SetValue(false));
+                transaction.AddIfNotNull(partyAudio.objectPlaying.SetValue(true));
+                transaction.Dispatch();
+
                 this.notificationService.NotifyUsers("La repas va bientôt commencer !", 1f);
                 await Task.Delay(1000);
 
@@ -195,7 +204,7 @@ namespace com.quentintran.player
                     await Task.Delay(1000);
                 }
 
-                Transaction transaction = new () { reliable = true };
+                transaction = new () { reliable = true };
 
                 IEnumerable<PlayerController> players = playerControllers.Values;
                 PlayerController player;

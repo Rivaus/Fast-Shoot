@@ -8,11 +8,8 @@ using umi3d.common.userCapture.tracking;
 using umi3d.edk.userCapture.tracking;
 using System.Collections.Generic;
 using static umi3d.edk.interaction.AbstractInteraction;
-using System;
-using UnityEngine.UIElements;
 using com.quentintran.player;
 using com.quentintran.server.shoot;
-using WebSocketSharp;
 
 namespace com.quentintran.gun
 {
@@ -155,9 +152,14 @@ namespace com.quentintran.gun
 
             Transaction transaction = new() { reliable = true };
 
+            transaction.AddIfNotNull(this.interactable.objectActive.SetValue(true));
             transaction.AddIfNotNull(this.interactable.GetProjectTool(false, new HashSet<UMI3DUser> { this.user }));
+
             if (user.HasHeadMountedDisplay)
+            {
+                transaction.AddIfNotNull(this.alternativeInteractable.objectActive.SetValue(true));
                 transaction.AddIfNotNull(this.alternativeInteractable.GetProjectTool(false, new HashSet<UMI3DUser> { this.user }));
+            }
 
             transaction.Dispatch();
         }
@@ -167,8 +169,13 @@ namespace com.quentintran.gun
             Transaction transaction = new() { reliable = true };
 
             transaction.AddIfNotNull(this.interactable.GetReleaseTool(new HashSet<UMI3DUser> { this.user }));
+            transaction.AddIfNotNull(this.interactable.objectActive.SetValue(false));
+
             if (user.HasHeadMountedDisplay)
+            {
                 transaction.AddIfNotNull(this.alternativeInteractable.GetReleaseTool(new HashSet<UMI3DUser> { this.user }));
+                transaction.AddIfNotNull(this.alternativeInteractable.objectActive.SetValue(false));
+            }
 
             transaction.Dispatch();
         }

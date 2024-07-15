@@ -574,7 +574,7 @@ MonoBehaviour:
       variants: []
   Interactions:
   - {fileID: 5403235891542967278}
-  Active: 1
+  Active: 0
   onProjection:
     m_PersistentCalls:
       m_Calls: []
@@ -863,7 +863,7 @@ MonoBehaviour:
       variants: []
   Interactions:
   - {fileID: 7424261926195179574}
-  Active: 1
+  Active: 0
   onProjection:
     m_PersistentCalls:
       m_Calls: []
